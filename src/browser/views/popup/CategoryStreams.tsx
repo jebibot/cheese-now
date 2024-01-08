@@ -6,7 +6,7 @@ import { t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
-import { useStreams } from "~/browser/hooks";
+import { useSearchStreams } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
@@ -27,10 +27,10 @@ const LoadMore = styled.div`
 function ChildComponent() {
   const { category } = useOutletContext<OutletContext>();
 
-  const [pages, { fetchMore, refresh, hasMore, isValidating }] = useStreams(
+  const [pages, { fetchMore, refresh, hasMore, isValidating }] = useSearchStreams(
     {
-      gameId: category.id,
-      first: 100,
+      keyword: category.loungeName,
+      size: 12,
     },
     {
       suspense: true,
@@ -50,8 +50,8 @@ function ChildComponent() {
       <List>
         {pages.map((page, index) => (
           <Fragment key={index}>
-            {page.data.map((stream) => (
-              <StreamCard key={stream.id} stream={stream} />
+            {page.content?.data.map((stream) => (
+              <StreamCard key={stream.live.liveId} channel={stream.channel} stream={stream.live} />
             ))}
           </Fragment>
         ))}

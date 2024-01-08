@@ -1,15 +1,13 @@
-import { ErrorResponse } from "@remix-run/router";
-import { IconBrandTwitch } from "@tabler/icons-react";
 import { useMemo } from "react";
-import { Outlet, useRouteError } from "react-router-dom";
+import { Outlet, isRouteErrorResponse, useRouteError } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { sendRuntimeMessage, t } from "~/common/helpers";
 import { useCurrentUser } from "~/browser/hooks";
 
-import Button from "~/browser/components/Button";
 import Hero from "~/browser/components/Hero";
 import Loader from "~/browser/components/Loader";
+import LoginButton from "~/browser/components/LoginButton";
 import Section from "~/browser/components/Section";
 import Sidebar from "~/browser/components/Sidebar";
 import Splash from "~/browser/components/Splash";
@@ -26,6 +24,10 @@ const Welcome = styled.div`
   ${tw`flex flex-1 flex-col h-full items-center justify-center px-16 text-center`}
 `;
 
+const Footer = styled.div`
+  ${tw`text-sm`}
+`;
+
 export function ChildComponent() {
   const [currentUser] = useCurrentUser({
     suspense: true,
@@ -38,14 +40,12 @@ export function ChildComponent() {
           <Hero />
         </Section>
         <Section>
-          <Button
-            color="purple"
+          <LoginButton
             onClick={() => sendRuntimeMessage("authorize")}
-            icon={<IconBrandTwitch size="1.5rem" strokeWidth={1.5} />}
-          >
-            {t("buttonText_login")}
-          </Button>
+            title={t("buttonText_login")}
+          />
         </Section>
+        <Footer>{t("detailText_login")}</Footer>
       </Welcome>
     );
   }
@@ -75,7 +75,7 @@ export function ErrorBoundary() {
   const error = useRouteError();
 
   const title = useMemo(() => {
-    if (error instanceof ErrorResponse) {
+    if (isRouteErrorResponse(error)) {
       return error.statusText;
     }
 

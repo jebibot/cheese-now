@@ -21,7 +21,7 @@
     "message": "Carregar Mais"
   },
   "buttonText_login": {
-    "message": "Entrar com Twitch"
+    "message": "Entrar com NAVER"
   },
   "buttonText_reloadExtension": {
     "message": "Recarregar Extensão"
@@ -42,10 +42,10 @@
     "message": "Todos os dados serão deletados e você será deslogado.<br />Deseja mesmo prosseguir?"
   },
   "confirmTitle_reload": {
-    "message": "Uh-on, Gumbo não está mais respondendo!"
+    "message": "Uh-on, Cheese Now não está mais respondendo!"
   },
   "confirmTitle_reset": {
-    "message": "Você está prestes a resetar Gumbo!"
+    "message": "Você está prestes a resetar Cheese Now!"
   },
   "detailText_noCategory": {
     "message": "Sem categoria"
@@ -87,10 +87,10 @@
     "message": "Nenhum vídeo encontrado"
   },
   "extensionDescription": {
-    "message": "A companhia Swollen te mantém atualizado com a sua experiência no Twitch"
+    "message": "A companhia Swollen te mantém atualizado com a sua experiência no CHZZK"
   },
   "extensionName": {
-    "message": "Gumbo: Twitch Companion"
+    "message": "Cheese Now: CHZZK Companion"
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Incluir categoria alterar notificações"
@@ -126,7 +126,7 @@
     "message": "Traduzir"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo é uma extensão grátis que não coleta e não vende as informações pessoais dos usuários.</p><p>Doações, embora opcionais são muito apreciadas, apoia o meu trabalho e me encoraja a oferecer a melhor qualidade possível em meus produtos.</p><p>Obrigado por seu suporte!</p>"
+    "message": "<p>Cheese Now é uma extensão grátis que não coleta e não vende as informações pessoais dos usuários.</p><p>Doações, embora opcionais são muito apreciadas, apoia o meu trabalho e me encoraja a oferecer a melhor qualidade possível em meus produtos.</p><p>Obrigado por seu suporte!</p>"
   },
   "messageText_typeSearchCategories": {
     "message": "Comece digitando para buscar categorias"
@@ -138,7 +138,7 @@
     "message": "Clique para autorizar"
   },
   "notificationMessage_accessExpired": {
-    "message": "Seu token de acesso do Twitch expirou, por favor faça uma nova autorização."
+    "message": "Seu token de acesso do CHZZK expirou, por favor faça uma nova autorização."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 está online!"

@@ -17,7 +17,7 @@ import Splash from "~/browser/components/Splash";
 import type { OutletContext } from "./Search";
 
 const Collection = styled.div`
-  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 px-4 py-2`}
+  ${tw`gap-x-2 gap-y-3 grid grid-cols-4 px-4 py-2`}
 `;
 
 const LoadMore = styled.div`
@@ -33,8 +33,8 @@ function ChildComponent(props: ChildComponentProps) {
 
   const [pages, { fetchMore, hasMore, isValidating, refresh }] = useSearchCategories(
     {
-      query: searchQuery,
-      first: 100,
+      keyword: searchQuery,
+      limit: 50,
     },
     {
       suspense: true,
@@ -53,16 +53,20 @@ function ChildComponent(props: ChildComponentProps) {
     <CollectionList
       type="category"
       items={[]}
-      getItemIdentifier={(item) => item.id}
-      defaultItems={pages.flatMap((page) => page.data)}
+      getItemIdentifier={(item) => item.loungeId}
+      defaultItems={pages.flatMap((page) => page.content?.lounges || [])}
       render={({ collection, items, createCollection }) => (
         <>
           <Collection>
             {items.map((category) => (
-              <Link key={category.id} to={`/categories/${category.id}`}>
+              <Link key={category.loungeId} to={`/categories/${category.loungeId}`}>
                 <CategoryCard
-                  category={category}
-                  onNewCollection={() => createCollection([category.id])}
+                  category={{
+                    id: category.loungeId,
+                    name: category.loungeName,
+                    logo: category.logoImageSquareUrl,
+                  }}
+                  onNewCollection={() => createCollection([category.loungeId])}
                 />
               </Link>
             ))}

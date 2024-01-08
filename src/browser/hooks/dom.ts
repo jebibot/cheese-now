@@ -8,14 +8,11 @@ export function useClickAction(userLogin: string, options?: UseStoreOptions): st
   const [settings] = useSettings(options);
 
   switch (settings.general.clickAction) {
-    case ClickAction.Popout:
-      return `https://twitch.tv/${userLogin}/popout`;
-
     case ClickAction.OpenChat:
-      return `https://twitch.tv/${userLogin}/chat`;
+      return `https://chzzk.naver.com/live/${userLogin}/chat`;
   }
 
-  return `https://twitch.tv/${userLogin}`;
+  return `https://chzzk.naver.com/live/${userLogin}`;
 }
 
 export function useHover(ref: RefObject<Element>): boolean {

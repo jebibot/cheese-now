@@ -8,17 +8,19 @@ import {
   nullable,
   number,
   object,
+  optional,
   string,
+  unknown,
 } from "superstruct";
 import { Storage } from "webextension-polyfill";
 
 import { ClickAction, ClickBehavior } from "./constants";
 import {
+  ChzzkFollowedChannel,
+  ChzzkUser,
   Collection,
   FollowedStreamState,
   FollowedUserState,
-  HelixStream,
-  HelixUser,
   Settings,
 } from "./types";
 
@@ -178,42 +180,42 @@ export class Store<T> {
 }
 
 export const stores = {
-  accessToken: new Store<string | null>("local", "accessToken", {
-    schema: nullable(string()),
-    defaultValue: () => null,
-  }),
-  currentUser: new Store<HelixUser | null>("local", "currentUser", {
+  currentUser: new Store<ChzzkUser | null>("local", "currentUser", {
     schema: nullable(
       object({
-        id: string(),
-        login: string(),
-        displayName: string(),
-        broadcasterType: string(),
-        description: string(),
-        profileImageUrl: string(),
-        offlineImageUrl: string(),
-        createdAt: string(),
+        hasProfile: boolean(),
+        userIdHash: string(),
+        nickname: string(),
+        profileImageUrl: nullable(string()),
+        penalties: unknown(),
+        officialNotiAgree: boolean(),
+        officialNotiAgreeUpdatedDate: nullable(string()),
+        verifiedMark: boolean(),
+        loggedIn: boolean(),
       }),
     ),
     defaultValue: () => null,
   }),
-  followedStreams: new Store<HelixStream[]>("local", "followedStreams", {
+  followedStreams: new Store<ChzzkFollowedChannel[]>("local", "followedStreams", {
     schema: array(
       object({
-        id: string(),
-        userId: string(),
-        userLogin: string(),
-        userName: string(),
-        gameId: string(),
-        gameName: string(),
-        type: string(),
-        title: string(),
-        tags: nullable(array(string())),
-        viewerCount: number(),
-        startedAt: string(),
-        language: string(),
-        thumbnailUrl: string(),
-        isMature: boolean(),
+        channelId: string(),
+        channel: object({
+          channelId: string(),
+          channelName: string(),
+          channelImageUrl: nullable(string()),
+          verifiedMark: boolean(),
+        }),
+        streamer: optional(
+          object({
+            openLive: boolean(),
+          }),
+        ),
+        liveInfo: object({
+          liveTitle: string(),
+          concurrentUserCount: number(),
+          liveCategoryValue: string(),
+        }),
       }),
     ),
     defaultValue: () => [],
@@ -228,27 +230,6 @@ export const stores = {
       }),
     ),
     defaultValue: () => [],
-    migrations: [
-      async (value) => {
-        const { pinnedCategories, pinnedUsers } = await browser.storage.local.get({
-          pinnedCategories: { value: [] },
-          pinnedUsers: { value: [] },
-        });
-
-        const addCollection = (data: Omit<Collection, "id" | "name">) =>
-          value.push({ ...data, name: "Pinned Items", id: crypto.randomUUID() });
-
-        if (pinnedCategories.value.length > 0) {
-          addCollection({ type: "category", items: pinnedCategories.value });
-        }
-
-        if (pinnedUsers.value.length > 0) {
-          addCollection({ type: "user", items: pinnedUsers.value });
-        }
-
-        return value;
-      },
-    ],
   }),
   settings: new Store<Settings>("local", "settings", {
     schema: object({
@@ -315,21 +296,26 @@ export const stores = {
   followedStreamState: new Store<FollowedStreamState>("local", "followedStreamState", {
     schema: object({
       sortDirection: enums(["asc", "desc"]),
-      sortField: enums(["gameName", "startedAt", "userLogin", "viewerCount"]),
+      sortField: enums([
+        "liveInfo.liveCategoryValue",
+        "liveInfo.openDate",
+        "channel.channelName",
+        "liveInfo.concurrentUserCount",
+      ]),
     }),
     defaultValue: () => ({
-      sortField: "viewerCount",
+      sortField: "liveInfo.concurrentUserCount",
       sortDirection: "desc",
     }),
   }),
   followedUserState: new Store<FollowedUserState>("local", "followedUserState", {
     schema: object({
       sortDirection: enums(["asc", "desc"]),
-      sortField: enums(["followedAt", "login"]),
+      sortField: enums(["followedAt", "channelName"]),
       status: nullable(boolean()),
     }),
     defaultValue: () => ({
-      sortField: "login",
+      sortField: "channelName",
       sortDirection: "asc",
       status: null,
     }),

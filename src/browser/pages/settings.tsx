@@ -30,10 +30,6 @@ const router = createHashRouter([
         path: "notification",
         lazy: () => import("../views/settings/NotificationSettings"),
       },
-      {
-        path: "stream",
-        lazy: () => import("../views/settings/StreamSettings"),
-      },
     ],
   },
 ]);

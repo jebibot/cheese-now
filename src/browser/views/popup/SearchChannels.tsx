@@ -33,8 +33,8 @@ function ChildComponent(props: ChildComponentProps) {
 
   const [pages, { fetchMore, hasMore, isValidating, refresh }] = useSearchChannels(
     {
-      query: searchQuery,
-      first: 100,
+      keyword: searchQuery,
+      size: 12,
     },
     {
       suspense: true,
@@ -54,8 +54,8 @@ function ChildComponent(props: ChildComponentProps) {
       <List>
         {pages.map((page, index) => (
           <Fragment key={index}>
-            {page.data.map((channel) => (
-              <ChannelCard key={channel.id} channel={channel} />
+            {page.content?.data.map((channel) => (
+              <ChannelCard key={channel.channel.channelId} channel={channel.channel} />
             ))}
           </Fragment>
         ))}

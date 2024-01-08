@@ -172,10 +172,6 @@ export function useFollowedStreams(options?: UseStoreOptions) {
   return useStore(stores.followedStreams, options);
 }
 
-export function useAccessToken(options?: UseStoreOptions) {
-  return useStore(stores.accessToken, options);
-}
-
 export function useSettings(options?: UseStoreOptions) {
   return useStore(stores.settings, options);
 }

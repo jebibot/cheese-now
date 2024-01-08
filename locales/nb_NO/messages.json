@@ -21,7 +21,7 @@
     "message": "Last inn mer"
   },
   "buttonText_login": {
-    "message": "Logg inn med Twitch"
+    "message": "Logg inn med NAVER"
   },
   "buttonText_reloadExtension": {
     "message": "Last inn utvidelsen igjen"
@@ -42,10 +42,10 @@
     "message": "Alle data kommer til å bli slettet og du vil bli logget ut.<br />Er du sikker på at du vil fortsette?"
   },
   "confirmTitle_reload": {
-    "message": "Gumbo svarer ikke lenger!"
+    "message": "Cheese Now svarer ikke lenger!"
   },
   "confirmTitle_reset": {
-    "message": "Du er i ferd med å tilbakestille Gumbo!"
+    "message": "Du er i ferd med å tilbakestille Cheese Now!"
   },
   "detailText_noCategory": {
     "message": "Ikke kategorisert"
@@ -87,10 +87,10 @@
     "message": "Fant ingen videoer"
   },
   "extensionDescription": {
-    "message": "Den tykkfalne kompanjongen holder deg oppdatert på Twitch"
+    "message": "Den tykkfalne kompanjongen holder deg oppdatert på CHZZK"
   },
   "extensionName": {
-    "message": "Gumbo: Twitch-kompanjong"
+    "message": "Cheese Now: CHZZK-kompanjong"
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Inkluder merknader om kategoriendringer"
@@ -126,7 +126,7 @@
     "message": "Oversett"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo er en fri utvidelse som ikke samler eller selger personvernsdata.</p><p>Donasjoner er valgfritt, men settes stor pris på. Hjelp til å støtte mitt arbeide, og oppfordre meg til å levere det best mulige produktet.</p><p>Takk for din støtte.</p>"
+    "message": "<p>Cheese Now er en fri utvidelse som ikke samler eller selger personvernsdata.</p><p>Donasjoner er valgfritt, men settes stor pris på. Hjelp til å støtte mitt arbeide, og oppfordre meg til å levere det best mulige produktet.</p><p>Takk for din støtte.</p>"
   },
   "messageText_typeSearchCategories": {
     "message": "Begynn å skrive for å søke etter kategorier"
@@ -138,7 +138,7 @@
     "message": "Klikk for å identitetsbekrefte"
   },
   "notificationMessage_accessExpired": {
-    "message": "Ditt Twitch-symbol har utløpt. Identitetsbekreft deg igjen for å få deg et nytt."
+    "message": "Ditt CHZZK-symbol har utløpt. Identitetsbekreft deg igjen for å få deg et nytt."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 er pålogget!"

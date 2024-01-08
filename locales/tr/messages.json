@@ -21,7 +21,7 @@
     "message": "Daha fazla yükle"
   },
   "buttonText_login": {
-    "message": "Twitch ile giriş yap"
+    "message": "NAVER ile giriş yap"
   },
   "buttonText_reloadExtension": {
     "message": "Eklentiyi Yeniden Yükle"
@@ -42,10 +42,10 @@
     "message": "Tüm veriler silinecek ve oturumunuz kapatılacak.<br />Devam etmek istediğinizden emin misiniz?"
   },
   "confirmTitle_reload": {
-    "message": "Uh-oh, Gumbo artık yanıt vermiyor!"
+    "message": "Uh-oh, Cheese Now artık yanıt vermiyor!"
   },
   "confirmTitle_reset": {
-    "message": "Gumbo'yu sıfırlamak üzeresiniz!"
+    "message": "Cheese Now'yu sıfırlamak üzeresiniz!"
   },
   "detailText_noCategory": {
     "message": "Kategori yok"
@@ -87,10 +87,10 @@
     "message": "Video bulunamadı"
   },
   "extensionDescription": {
-    "message": "Twitch deneyiminizi güncel tutan şişmiş arkadaşınız"
+    "message": "CHZZK deneyiminizi güncel tutan şişmiş arkadaşınız"
   },
   "extensionName": {
-    "message": "Gumbo: Twitch Companion"
+    "message": "Cheese Now: CHZZK Companion"
   },
   "inputLabel_categoryChangeNotifications": {
     "message": "Kategori değişikliği bildirimlerini dahil et"
@@ -126,7 +126,7 @@
     "message": "Çeviri"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo, kişisel kullanıcı verilerini toplamayan ve satmayan ücretsiz bir eklentidir.</p><p>Bağışlar, isteğe bağlı olsa da büyük ölçüde değerlendirilir ve çalışmalarımı desteklememe ve mümkün olan en iyi kaliteli ürünler sunmama yardımcı olur.</p><p>Desteğiniz için teşekkür ederim!</p>"
+    "message": "<p>Cheese Now, kişisel kullanıcı verilerini toplamayan ve satmayan ücretsiz bir eklentidir.</p><p>Bağışlar, isteğe bağlı olsa da büyük ölçüde değerlendirilir ve çalışmalarımı desteklememe ve mümkün olan en iyi kaliteli ürünler sunmama yardımcı olur.</p><p>Desteğiniz için teşekkür ederim!</p>"
   },
   "messageText_typeSearchCategories": {
     "message": "Kategorileri aramak için yazmaya başlayın"
@@ -138,7 +138,7 @@
     "message": "Yetkilendirmek için tıklayın"
   },
   "notificationMessage_accessExpired": {
-    "message": "Twitch erişim tokeniniz'in süresi doldu, lütfen yeni bir tane almak için yeniden yetkilendirin."
+    "message": "CHZZK erişim tokeniniz'in süresi doldu, lütfen yeni bir tane almak için yeniden yetkilendirin."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 çevrimiçi!"

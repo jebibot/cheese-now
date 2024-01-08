@@ -21,7 +21,7 @@
     "message": "Load More"
   },
   "buttonText_login": {
-    "message": "Login with Twitch"
+    "message": "Login with NAVER"
   },
   "buttonText_reloadExtension": {
     "message": "Reload Extension"
@@ -54,13 +54,19 @@
     "message": "Confirm Deletion"
   },
   "confirmTitle_reload": {
-    "message": "Uh-oh, Gumbo is not responding anymore!"
+    "message": "Uh-oh, Cheese Now is not responding anymore!"
   },
   "confirmTitle_reset": {
-    "message": "You are about to reset Gumbo!"
+    "message": "You are about to reset Cheese Now!"
+  },
+  "detailText_followerCount": {
+    "message": "$1 followers"
   },
   "detailText_followingSince": {
     "message": "Following since $1"
+  },
+  "detailText_login": {
+    "message": "The NAVER account logged in in the browser is used and is not stored elsewhere."
   },
   "detailText_noCategory": {
     "message": "No category"
@@ -105,10 +111,10 @@
     "message": "No videos found"
   },
   "extensionDescription": {
-    "message": "Swollen companion keeping you updated on your Twitch experience"
+    "message": "CHZZK streams list and notifications"
   },
   "extensionName": {
-    "message": "Gumbo: Twitch Companion"
+    "message": "Cheese Now - CHZZK Companion"
   },
   "helpText_customAction_url": {
     "message": "Example: $1"
@@ -150,7 +156,7 @@
     "message": "Translate"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo is a free extension that does not collect or sell personal user data.</p><p>Donations, although optional but greatly appreciated, help support my work and encourage me to offer the best quality products possible.</p><p>Thank you for your support!</p>"
+    "message": "<p>Cheese Now is a free extension that does not collect or sell personal user data.</p><p>Donations, although optional but greatly appreciated, help support my work and encourage me to offer the best quality products possible.</p><p>Thank you for your support!</p>"
   },
   "messageText_typeSearchCategories": {
     "message": "Start typing to search categories"
@@ -165,10 +171,10 @@
     "message": "Click to view changes"
   },
   "notificationMessage_accessExpired": {
-    "message": "Your Twitch access token expired, please re-authorize to get a new one."
+    "message": "Your CHZZK access token expired, please re-authorize to get a new one."
   },
   "notificationMessage_extensionUpdated": {
-    "message": "Gumbo as been updated to version $1."
+    "message": "Cheese Now as been updated to version $1."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 is online!"
@@ -270,7 +276,7 @@
     "message": "Popout"
   },
   "optionValue_schedule": {
-    "message": "Schedule"
+    "message": "Community"
   },
   "optionValue_search": {
     "message": "Search"

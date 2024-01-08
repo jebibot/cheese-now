@@ -1,7 +1,7 @@
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
-import { HelixChannelSearchResult } from "~/common/types";
+import { ChzzkChannel } from "~/common/types";
 
 import { useClickAction } from "~/browser/hooks";
 
@@ -19,10 +19,10 @@ const StyledDropdownButton = styled(DropdownButton)`
 `;
 
 const Thumbnail = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded-full w-12`}
+  ${tw`overflow-hidden relative rounded-full w-12`}
 `;
 
-const CategoryName = styled.div`
+const FollowerCount = styled.div`
   ${tw`truncate`}
 `;
 
@@ -45,33 +45,40 @@ const Wrapper = styled(Card)<WrapperProps>`
 `;
 
 export interface ChannelCardProps {
-  channel: HelixChannelSearchResult;
+  channel: ChzzkChannel;
 }
 
 function ChannelCard(props: ChannelCardProps) {
   const { channel } = props;
 
-  const defaultAction = useClickAction(channel.broadcasterLogin);
+  const defaultAction = useClickAction(channel.channelId);
 
   return (
     <Anchor to={defaultAction}>
       <Wrapper
-        isLive={channel.isLive}
-        title={<ChannelName login={channel.broadcasterLogin} name={channel.displayName} />}
+        isLive={channel.openLive}
+        title={<ChannelName login={channel.channelId} name={channel.channelName} />}
         subtitle={
-          <Tooltip content={channel.title}>
-            <span>{channel.title || <i>{t("detailText_noTitle")}</i>}</span>
+          <Tooltip content={channel.channelDescription}>
+            <span>{channel.channelDescription}</span>
           </Tooltip>
         }
         leftOrnament={
           <Thumbnail>
-            <Image src={channel.thumbnailUrl} ratio={1} />
+            <Image
+              src={
+                channel.channelImageUrl
+                  ? `${channel.channelImageUrl}?type=f120_120_na`
+                  : "https://ssl.pstatic.net/cmstatic/nng/img/img_anonymous_square_gray_opacity2x.png"
+              }
+              ratio={1}
+            />
           </Thumbnail>
         }
       >
-        <CategoryName title={channel.gameName}>
-          {channel.gameName || <i>{t("detailText_noCategory")}</i>}
-        </CategoryName>
+        <FollowerCount>
+          {t("detailText_followerCount", (channel.followerCount || 0).toLocaleString())}
+        </FollowerCount>
 
         <ChannelDropdown channel={channel}>
           <StyledDropdownButton />

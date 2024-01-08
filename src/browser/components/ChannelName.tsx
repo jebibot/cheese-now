@@ -1,11 +1,4 @@
-import { useMemo } from "react";
-import tw, { styled } from "twin.macro";
-
 import Tooltip from "./Tooltip";
-
-const Login = styled.span`
-  ${tw`font-normal`}
-`;
 
 export interface ChannelNameProps {
   className?: string;
@@ -14,24 +7,10 @@ export interface ChannelNameProps {
 }
 
 function ChannelName(props: ChannelNameProps) {
-  const displayName = useMemo(() => props.name || props.login, [props.login, props.name]);
-
-  const isDifferent = useMemo(
-    () => displayName.toLowerCase().trim() !== props.login.toLowerCase().trim(),
-    [displayName, props.login],
-  );
-
-  const title = useMemo(
-    () => `${displayName}${isDifferent ? ` (${props.login})` : ""}`,
-    [displayName, isDifferent, props.login],
-  );
-
   return (
     <div className={props.className}>
-      <Tooltip content={title}>
-        <span>
-          {displayName} {isDifferent && <Login>({props.login})</Login>}
-        </span>
+      <Tooltip content={`${props.name} (${props.login})`}>
+        <span>{props.name}</span>
       </Tooltip>
     </div>
   );

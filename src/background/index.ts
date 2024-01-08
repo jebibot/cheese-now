@@ -1,29 +1,22 @@
-import {
-  camelCase,
-  castArray,
-  chunk,
-  find,
-  flatMap,
-  get,
-  map,
-  remove,
-  snakeCase,
-  toString,
-} from "lodash-es";
+import { castArray, find, get, toString } from "lodash-es";
 
-import { AUTHORIZE_URL } from "~/common/constants";
+import { REDIRECT_URI } from "~/common/constants";
 import {
-  allPromises,
-  changeCase,
-  isRerunStream,
   matchString,
   openUrl,
+  reportException,
   settlePromises,
   setupSentry,
   t,
 } from "~/common/helpers";
 import { stores } from "~/common/stores";
-import { Dictionary, HelixResponse, HelixStream, HelixUser } from "~/common/types";
+import {
+  ChzzkFollowedChannel,
+  ChzzkFollowing,
+  ChzzkResponse,
+  ChzzkUser,
+  Dictionary,
+} from "~/common/types";
 
 setupSentry();
 
@@ -40,8 +33,8 @@ class RequestError extends Error {
   }
 }
 
-async function request<T>(path: string, params?: Dictionary<unknown>): Promise<HelixResponse<T>> {
-  const url = new URL(path, "https://api.twitch.tv/helix/");
+async function request<T>(path: string, params?: Dictionary<unknown>): Promise<ChzzkResponse<T>> {
+  const url = new URL(path, "https://api.chzzk.naver.com/service/");
 
   for (const [name, value] of Object.entries(params ?? {})) {
     for (const v of castArray(value)) {
@@ -49,86 +42,47 @@ async function request<T>(path: string, params?: Dictionary<unknown>): Promise<H
         continue;
       }
 
-      url.searchParams.append(snakeCase(name), toString(v));
+      url.searchParams.append(name, toString(v));
     }
   }
 
   const request = new Request(url, {
     cache: "no-cache",
-    headers: {
-      "Client-ID": process.env.TWITCH_CLIENT_ID as string,
-    },
   });
-
-  const accessToken = await stores.accessToken.get();
-
-  if (accessToken) {
-    request.headers.set("Authorization", `Bearer ${accessToken}`);
-  }
 
   const response = await fetch(request);
 
-  switch (response.status) {
-    case 204:
-      return undefined as never;
-
-    case 401: {
-      if (await stores.accessToken.set(null)) {
-        browser.notifications.create(`${Date.now()}:authorize`, {
-          title: t("notificationTitle_accessExpired"),
-          message: t("notificationMessage_accessExpired"),
-          iconUrl: browser.runtime.getURL("icon-96.png"),
-          type: "basic",
-        });
-      }
-
-      break;
-    }
-  }
-
   if (response.ok) {
-    return changeCase(await response.json(), camelCase);
+    return response.json();
   }
 
   throw new RequestError(request, response);
 }
 
-async function paginate<T>(path: string, params?: Dictionary<unknown>): Promise<T[]> {
-  const { data, pagination } = await request<T>(path, params);
+async function getCurrentUser() {
+  const user = await request<ChzzkUser>(
+    "https://comm-api.game.naver.com/nng_main/v1/user/getUserStatus",
+  );
 
-  if (pagination.cursor) {
-    return data.concat(await paginate(path, { ...params, after: pagination.cursor }));
+  if (!user.content?.userIdHash) {
+    return null;
   }
 
-  return data;
+  return user.content;
 }
 
-async function getCurrentUser() {
-  return get(await request<HelixUser>("users"), ["data", 0], null);
+async function getFollowedStreams() {
+  const liveFollowings = await request<ChzzkFollowing>("v1/channels/followings/live");
+  const list = liveFollowings.content?.followingList;
+
+  if (!list?.length) {
+    return [];
+  }
+
+  return list;
 }
 
-async function getUsersByIds(userIds: string[]) {
-  const pages = await allPromises(chunk(userIds, 100), async (id) => {
-    const { data } = await request<HelixUser>("users", {
-      id,
-    });
-
-    return data;
-  });
-
-  return flatMap(pages);
-}
-
-async function getFollowedStreams(userId: string) {
-  const followedStreams = await paginate<HelixStream>("streams/followed", {
-    first: 100,
-    userId,
-  });
-
-  return followedStreams;
-}
-
-async function filterFollowedStreams(streams: HelixStream[]) {
+async function filterFollowedStreams(streams: ChzzkFollowedChannel[]) {
   const [followedStreams, settings] = await Promise.all([
     stores.followedStreams.get(),
     stores.settings.get(),
@@ -140,73 +94,62 @@ async function filterFollowedStreams(streams: HelixStream[]) {
 
   return streams.filter((stream) => {
     if (
-      (withFilters && !selectedUsers.includes(stream.userId)) ||
-      ignoredCategories.some(matchString.bind(null, stream.gameName))
+      (withFilters && !selectedUsers.includes(stream.channelId)) ||
+      ignoredCategories.some(matchString.bind(null, stream.liveInfo.liveCategoryValue))
     ) {
       return false;
     }
 
     const oldStream = find(followedStreams, {
-      userId: stream.userId,
+      channelId: stream.channelId,
     });
 
-    return oldStream == null || (withCategoryChanges && oldStream.gameId !== stream.gameId);
+    return (
+      oldStream == null ||
+      (withCategoryChanges &&
+        oldStream.liveInfo.liveCategoryValue !== stream.liveInfo.liveCategoryValue)
+    );
   });
 }
 
-async function refreshCurrentUser(accessToken: string | null) {
-  let currentUser = null;
+async function refreshCurrentUser() {
+  const currentUser = await getCurrentUser();
 
-  if (accessToken) {
-    currentUser = await getCurrentUser();
+  if (await stores.currentUser.set(currentUser)) {
+    if (currentUser == null) {
+      browser.notifications.create(`${Date.now()}:authorize`, {
+        title: t("notificationTitle_accessExpired"),
+        message: t("notificationMessage_accessExpired"),
+        iconUrl: browser.runtime.getURL("icon-96.png"),
+        type: "basic",
+      });
+    }
   }
-
-  await stores.currentUser.set(currentUser);
 
   return currentUser;
 }
 
-async function refreshFollowedStreams(user: HelixUser, showNotifications = true) {
+async function refreshFollowedStreams(showNotifications = true) {
   const settings = await stores.settings.get();
 
-  let followedStreams = new Array<HelixStream>();
+  const followedStreams = await getFollowedStreams();
 
-  if (user) {
-    followedStreams = await getFollowedStreams(user.id);
+  if (showNotifications && settings.notifications.enabled) {
+    const streams = await filterFollowedStreams(followedStreams);
 
-    if (!settings.streams.withReruns) {
-      remove(followedStreams, isRerunStream);
-    }
-
-    if (showNotifications && settings.notifications.enabled) {
-      const streams = await filterFollowedStreams(followedStreams);
-      const users = await getUsersByIds(map(streams, "userId"));
-
-      settlePromises(streams, async (stream) => {
-        const create = (iconUrl = browser.runtime.getURL("icon-96.png")) =>
-          browser.notifications.create(`${Date.now()}:stream:${stream.userLogin}`, {
-            title: t(`notificationMessage_stream${stream.gameName ? "Playing" : "Online"}`, [
-              stream.userName || stream.userLogin,
-              stream.gameName,
-            ]),
-            message: stream.title || t("detailText_noTitle"),
-            type: "basic",
-            iconUrl,
-          });
-
-        try {
-          const user = find(users, {
-            id: stream.userId,
-          });
-
-          if (user) {
-            return await create(user.profileImageUrl);
-          }
-        } catch {} // eslint-disable-line no-empty
-
-        await create();
-      });
-    }
+    settlePromises(streams, (stream) =>
+      browser.notifications.create(`${Date.now()}:stream:${stream.channelId}`, {
+        title: t(
+          `notificationMessage_stream${stream.liveInfo.liveCategoryValue ? "Playing" : "Online"}`,
+          [stream.channel.channelName, stream.liveInfo.liveCategoryValue],
+        ),
+        message: stream.liveInfo.liveTitle || t("detailText_noTitle"),
+        type: "basic",
+        iconUrl: stream.channel.channelImageUrl
+          ? `${stream.channel.channelImageUrl}?type=f120_120_na`
+          : browser.runtime.getURL("icon-96.png"),
+      }),
+    );
   }
 
   await stores.followedStreams.set(followedStreams);
@@ -214,12 +157,16 @@ async function refreshFollowedStreams(user: HelixUser, showNotifications = true)
 
 async function refresh(withNotifications: boolean) {
   try {
-    const user = await refreshCurrentUser(await stores.accessToken.get());
+    const user = await refreshCurrentUser();
 
     if (user) {
-      await refreshFollowedStreams(user, withNotifications);
+      await refreshFollowedStreams(withNotifications);
+    } else {
+      await stores.followedStreams.set([]);
     }
-  } catch {} // eslint-disable-line no-empty
+  } catch (e) {
+    reportException(e);
+  }
 
   browser.alarms.create("refresh", {
     delayInMinutes: 1,
@@ -288,7 +235,7 @@ async function restore(data: Dictionary<unknown>) {
 }
 
 async function authorize() {
-  return openUrl(AUTHORIZE_URL, undefined, true);
+  return openUrl(`https://nid.naver.com/nidlogin.login?url=${REDIRECT_URI}`, undefined, true);
 }
 
 async function setup(): Promise<void> {
@@ -314,25 +261,6 @@ async function reset(): Promise<void> {
   await setup();
 }
 
-async function revoke() {
-  const token = await stores.accessToken.get();
-
-  if (token) {
-    fetch("https://id.twitch.tv/oauth2/revoke", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({
-        client_id: process.env.TWITCH_CLIENT_ID as string,
-        token,
-      }),
-    });
-  }
-
-  await stores.accessToken.reset();
-}
-
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   authorize,
   backup,
@@ -340,7 +268,6 @@ const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   request,
   reset,
   restore,
-  revoke,
 };
 
 browser.alarms.onAlarm.addListener((alarm) => {
@@ -355,10 +282,10 @@ browser.notifications.onClicked.addListener((notificationId) => {
       return authorize();
 
     case "stream":
-      return openUrl(`https://twitch.tv/${data}`);
+      return openUrl(`https://chzzk.naver.com/live/${data}`);
 
     case "update":
-      return openUrl("https://github.com/Seldszar/Gumbo/blob/main/CHANGELOG.md");
+      return openUrl("https://github.com/jebibot/cheese-now/blob/main/CHANGELOG.md");
   }
 });
 
@@ -394,23 +321,16 @@ browser.runtime.onMessage.addListener((message) => {
 });
 
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (
-    changeInfo.status === "complete" &&
-    tab.url?.startsWith(process.env.TWITCH_REDIRECT_URI as string)
-  ) {
-    const url = new URL(tab.url);
-    const hashParams = new URLSearchParams(url.hash.substring(1));
-
-    const accessToken = hashParams.get("access_token");
-
-    if (accessToken) {
-      stores.accessToken.set(accessToken);
-    }
+  if (changeInfo.status === "complete" && tab.url?.startsWith(REDIRECT_URI)) {
+    refresh(false);
+    browser.tabs.remove(tabId);
   }
 });
 
-stores.accessToken.onChange(() => {
-  refresh(false);
+stores.currentUser.onChange((_, oldValue) => {
+  if (oldValue == null) {
+    refresh(false);
+  }
 });
 
 stores.followedStreams.onChange(() => {

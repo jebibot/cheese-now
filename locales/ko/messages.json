@@ -21,7 +21,7 @@
     "message": "더 보기"
   },
   "buttonText_login": {
-    "message": "Twitch로 로그인"
+    "message": "NAVER로 로그인하기"
   },
   "buttonText_reloadExtension": {
     "message": "확장 프로그램 새로고침"
@@ -48,19 +48,25 @@
     "message": "확장 프로그램을 다시 불러오려면 아래 버튼을 누르세요."
   },
   "confirmMessage_reset": {
-    "message": "모든 데이터가 삭제되고 로그아웃됩니다.<br />계속하시겠습니까?"
+    "message": "모든 데이터가 삭제됩니다.<br />계속하시겠습니까?"
   },
   "confirmTitle_deleteItem": {
     "message": "삭제 확인"
   },
   "confirmTitle_reload": {
-    "message": "Gumbo가 응답하지 않습니다!"
+    "message": "새로고침 확인"
   },
   "confirmTitle_reset": {
-    "message": "Gumbo를 재설정하려고 합니다!"
+    "message": "재설정 확인"
+  },
+  "detailText_followerCount": {
+    "message": "팔로워 $1명"
   },
   "detailText_followingSince": {
-    "message": "$1 부터 팔로잉"
+    "message": "$1부터 팔로잉"
+  },
+  "detailText_login": {
+    "message": "브라우저에 로그인되어 있는 네이버 계정을 사용하며, 별도로 저장되지 않습니다."
   },
   "detailText_noCategory": {
     "message": "카테고리 없음"
@@ -105,10 +111,10 @@
     "message": "동영상을 찾을 수 없습니다"
   },
   "extensionDescription": {
-    "message": "Twitch의 최신 정보를 제공하는 좋은 동반자"
+    "message": "치지직 방송 목록 및 알림"
   },
   "extensionName": {
-    "message": "Gumbo: Twitch Companion"
+    "message": "치즈 나우 - 치지직 도우미"
   },
   "helpText_customAction_url": {
     "message": "예: $1"
@@ -117,13 +123,13 @@
     "message": "사용 가능한 자리 표시자"
   },
   "inputLabel_categoryChangeNotifications": {
-    "message": "카테고리 변경 알림 포함"
+    "message": "카테고리 변경 알림"
   },
   "inputLabel_enableNotifications": {
     "message": "알림 활성화"
   },
   "inputLabel_filterNotificationsByChannel": {
-    "message": "채널별로 알림 필터링"
+    "message": "채널별 알림 설정"
   },
   "inputLabel_filterStreamsByLanguage": {
     "message": "언어별로 방송 필터링"
@@ -150,13 +156,13 @@
     "message": "번역하기"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo는 개인 사용자 데이터를 수집하거나 판매하지 않는 무료 확장 프로그램입니다.</p><p>기부는 선택 사항이지만 감사하게 생각하고 있으며, 저에게 동기부여와 함께 작업이 최고의 품질을 제공하는 데에 있어 큰 도움이 됩니다.</p><p>지원해주셔서 감사합니다!</p>"
+    "message": "<p>Cheese Now는 개인 사용자 데이터를 수집하거나 판매하지 않는 무료 확장 프로그램입니다.</p><p>기부는 선택 사항이지만 감사하게 생각하고 있으며, 저에게 동기부여와 함께 작업이 최고의 품질을 제공하는 데에 있어 큰 도움이 됩니다.</p><p>지원해주셔서 감사합니다!</p>"
   },
   "messageText_typeSearchCategories": {
-    "message": "검색에 카테고리를 입력하세요"
+    "message": "검색창에 카테고리를 입력해 주세요"
   },
   "messageText_typeSearchChannels": {
-    "message": "검색에 채널명을 입력하세요"
+    "message": "검색창에 키워드를 입력해 주세요"
   },
   "notificationContextMessage_accessExpired": {
     "message": "승인하려면 누르세요"
@@ -165,19 +171,19 @@
     "message": "변경 사항을 보려면 클릭하세요"
   },
   "notificationMessage_accessExpired": {
-    "message": "Twitch 액세스 토큰이 만료되었습니다. 새 토큰을 받으려면 다시 인증하세요."
+    "message": "네이버 로그인이 필요합니다."
   },
   "notificationMessage_extensionUpdated": {
-    "message": "Gumbo가 버전 $1(으)로 업데이트되었습니다."
+    "message": "치지직 나우가 버전 $1(으)로 업데이트되었습니다."
   },
   "notificationMessage_streamOnline": {
-    "message": "$1 생방송 중입니다!"
+    "message": "$1이(가) 생방송 중입니다!"
   },
   "notificationMessage_streamPlaying": {
-    "message": "$1 is playing $2!"
+    "message": "$1이(가) $2 방송 중입니다!"
   },
   "notificationTitle_accessExpired": {
-    "message": "액세스 만료됨"
+    "message": "네이버 로그인 필요"
   },
   "optionTitle_clickAction": {
     "message": "클릭 동작"
@@ -270,7 +276,7 @@
     "message": "팝업"
   },
   "optionValue_schedule": {
-    "message": "일정"
+    "message": "커뮤니티"
   },
   "optionValue_search": {
     "message": "검색"
@@ -285,10 +291,10 @@
     "message": "팔로우"
   },
   "optionValue_sort_login": {
-    "message": "채널 이름(ID)"
+    "message": "채널 이름"
   },
   "optionValue_sort_name": {
-    "message": "이름(ID)"
+    "message": "이름"
   },
   "optionValue_sort_time": {
     "message": "시간"
@@ -309,10 +315,10 @@
     "message": "모두"
   },
   "optionValue_status_offlineOnly": {
-    "message": "오프라인 만"
+    "message": "오프라인"
   },
   "optionValue_status_onlineOnly": {
-    "message": "생방송 만"
+    "message": "방송 중"
   },
   "optionValue_theme_dark": {
     "message": "어둡게"
@@ -345,7 +351,7 @@
     "message": "동영상"
   },
   "placeholderText_ignoredCategories": {
-    "message": "무시할 카테고리를 입력하세요"
+    "message": "무시할 카테고리를 입력해 주세요"
   },
   "titleText_advanced": {
     "message": "고급"
@@ -360,7 +366,7 @@
     "message": "카테고리"
   },
   "titleText_channelId": {
-    "message": "Channel ID"
+    "message": "채널 UID"
   },
   "titleText_channelLogin": {
     "message": "Channel Login"

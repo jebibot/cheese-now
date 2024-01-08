@@ -2,11 +2,11 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
-  "default_locale": "en",
+  "default_locale": "ko",
   "version": "0.0.0",
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
-      "id": "{59a39734-1e66-452e-a7b8-cc79f72062f0}"
+      "id": "cheese-now@chatlink.app"
     }
   },
   "permissions": [
@@ -14,7 +14,10 @@
     "notifications",
     "storage",
     "unlimitedStorage",
-    "https://gumbo.seldszar.fr/*"
+    "https://api.chzzk.naver.com/*",
+    "https://comm-api.game.naver.com/*",
+    "https://nng-phinf.pstatic.net/*",
+    "https://api.multichzzk.tv/*"
   ],
   "background": {
     "scripts": [
@@ -32,9 +35,6 @@
       "16": "icon-16.png",
       "32": "icon-32.png"
     }
-  },
-  "commands": {
-    "_execute_browser_action": {}
   },
   "options_ui": {
     "page": "settings.html",

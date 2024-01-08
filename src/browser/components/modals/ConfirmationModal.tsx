@@ -8,7 +8,7 @@ import Modal from "../Modal";
 import Renderer from "../Renderer";
 
 const Panel = styled.div`
-  ${tw`flex flex-col items-center text-center`}
+  ${tw`flex flex-col items-center text-center text-neutral-400`}
 `;
 
 const Title = styled.div`
@@ -16,7 +16,7 @@ const Title = styled.div`
 `;
 
 const Message = styled.div`
-  ${tw`mb-6 text-neutral-600 dark:text-neutral-400`}
+  ${tw`mb-6`}
 `;
 
 const ButtonGroup = styled.div`

@@ -3,7 +3,7 @@ import { ReactElement, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { openUrl, t, template } from "~/common/helpers";
-import { HelixStream } from "~/common/types";
+import { ChzzkChannel } from "~/common/types";
 
 import { useCollections, useSettings } from "~/browser/hooks";
 
@@ -11,13 +11,14 @@ import DropdownMenu, { DropdownMenuItemProps } from "../DropdownMenu";
 
 export interface StreamDropdownProps {
   children: ReactElement;
-  stream: HelixStream;
+  channel: ChzzkChannel;
+  category?: string;
 
   onNewCollection?(): void;
 }
 
 function StreamDropdown(props: StreamDropdownProps) {
-  const { stream } = props;
+  const { channel, category } = props;
 
   const navigate = useNavigate();
 
@@ -33,17 +34,13 @@ function StreamDropdown(props: StreamDropdownProps) {
       {
         type: "normal",
         title: t("optionValue_openChannel"),
-        onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}`, event),
+        onClick: (event) => openUrl(`https://chzzk.naver.com/live/${channel.channelId}`, event),
       },
       {
         type: "normal",
         title: t("optionValue_openChat"),
-        onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}/chat`, event),
-      },
-      {
-        type: "normal",
-        title: t("optionValue_popout"),
-        onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}/popout`, event),
+        onClick: (event) =>
+          openUrl(`https://chzzk.naver.com/live/${channel.channelId}/chat`, event),
       },
     );
 
@@ -57,8 +54,7 @@ function StreamDropdown(props: StreamDropdownProps) {
           onClick: (event) =>
             openUrl(
               template(item.url, {
-                "{login}": stream.userLogin,
-                "{id}": stream.userId,
+                "{id}": channel.channelId,
               }),
               event,
             ),
@@ -81,8 +77,8 @@ function StreamDropdown(props: StreamDropdownProps) {
           ...userCollections.map<DropdownMenuItemProps>((collection) => ({
             type: "checkbox",
             title: collection.name,
-            checked: collection.items.includes(stream.userId),
-            onChange: () => toggleCollectionItem(collection.id, stream.userId),
+            checked: collection.items.includes(channel.channelId),
+            onChange: () => toggleCollectionItem(collection.id, channel.channelId),
           })),
           {
             type: "separator",
@@ -109,31 +105,32 @@ function StreamDropdown(props: StreamDropdownProps) {
       {
         type: "normal",
         title: t("optionValue_about"),
-        onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}/about`, event),
+        onClick: (event) => openUrl(`https://chzzk.naver.com/${channel.channelId}/about`, event),
       },
       {
         type: "normal",
         title: t("optionValue_schedule"),
-        onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}/schedule`, event),
+        onClick: (event) =>
+          openUrl(`https://chzzk.naver.com/${channel.channelId}/community`, event),
       },
       {
         type: "normal",
         title: t("optionValue_videos"),
-        onClick: (event) => openUrl(`https://twitch.tv/${stream.userLogin}/videos`, event),
+        onClick: (event) => openUrl(`https://chzzk.naver.com/${channel.channelId}/videos`, event),
       },
       {
         type: "separator",
       },
       {
         type: "normal",
-        disabled: !stream.gameId,
+        disabled: !category,
         title: t("optionValue_gotoCategory"),
-        onClick: () => navigate(`/categories/${stream.gameId}`),
+        onClick: () => navigate(`/categories/${category}`),
       },
     );
 
     return result;
-  }, [collections, customActions, props.onNewCollection, stream]);
+  }, [collections, customActions, props.onNewCollection, category]);
 
   return <DropdownMenu items={items}>{props.children}</DropdownMenu>;
 }

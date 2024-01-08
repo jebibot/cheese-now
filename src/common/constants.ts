@@ -1,4 +1,4 @@
-export const AUTHORIZE_URL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.TWITCH_CLIENT_ID}&redirect_uri=${process.env.TWITCH_REDIRECT_URI}&response_type=token&scope=user:read:follows`;
+export const REDIRECT_URI = `https://comm-api.game.naver.com/nng_main/v1/user/getUserStatus`;
 
 export const LANGUAGE_OPTIONS = [
   {
@@ -161,7 +161,6 @@ export const PRESET_COLORS = [
 export enum ClickAction {
   OpenChannel,
   OpenChat,
-  Popout,
 }
 
 export enum ClickBehavior {

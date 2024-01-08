@@ -1,23 +1,22 @@
-import { chunk, flatMap, get, has } from "lodash-es";
-import { useMemo } from "react";
+import { get, has } from "lodash-es";
 import useSWR, { SWRConfiguration } from "swr";
 import useSWRInfinite, { SWRInfiniteConfiguration } from "swr/infinite";
 
-import { allPromises, sendRuntimeMessage } from "~/common/helpers";
+import { sendRuntimeMessage } from "~/common/helpers";
 import {
+  ChzzkCategory,
+  ChzzkChannel,
+  ChzzkFollowedChannel,
+  ChzzkLive,
+  ChzzkLounge,
+  ChzzkOffset,
+  ChzzkPagination,
+  ChzzkResponse,
+  ChzzkVideo,
   Dictionary,
-  HelixCategorySearchResult,
-  HelixChannelSearchResult,
-  HelixClip,
-  HelixFollowedChannel,
-  HelixGame,
-  HelixResponse,
-  HelixStream,
-  HelixUser,
-  HelixVideo,
 } from "~/common/types";
 
-import { UseStoreOptions, useCurrentUser, useSettings } from "./store";
+import { UseStoreOptions, useCurrentUser } from "./store";
 
 export interface UseQueryListResponse {
   fetchMore(): Promise<void>;
@@ -28,10 +27,12 @@ export interface UseQueryListResponse {
   error?: Error;
 }
 
-export type UseQueryListReturn<T> = [HelixResponse<T>[] | undefined, UseQueryListResponse];
+export type UseQueryListReturn<T> = [ChzzkResponse<T>[] | undefined, UseQueryListResponse];
 
 export function useQueryList<T = any>(
   path: string,
+  getNext: (data: any) => any,
+  hasNext: (data: any) => boolean,
   params?: Dictionary<unknown> | null,
   config?: SWRInfiniteConfiguration,
 ): UseQueryListReturn<T> {
@@ -42,13 +43,13 @@ export function useQueryList<T = any>(
       }
 
       if (pageIndex > 0) {
-        const after = get(previousPageData, "pagination.cursor");
+        const next = getNext(previousPageData);
 
-        if (after == null) {
+        if (next == null) {
           return null;
         }
 
-        params = { ...params, after };
+        params = { ...params, ...next };
       }
 
       return [path, params];
@@ -60,7 +61,7 @@ export function useQueryList<T = any>(
   );
 
   const page = get(data, size - 1);
-  const hasMore = has(page, "pagination.cursor") || (size > 0 && isValidating);
+  const hasMore = hasNext(page) || (size > 0 && isValidating);
 
   return [
     data,
@@ -81,117 +82,129 @@ export function useQueryList<T = any>(
   ];
 }
 
-export interface UseQueryDetailResponse {
-  isLoading: boolean;
-  error?: Error;
-}
-
-export type UseQueryDetailReturn<T> = [T | undefined, UseQueryDetailResponse];
-
-export function useQueryDetail<T = any>(
+export function useCursorQueryList<T = any>(
   path: string,
   params?: Dictionary<unknown> | null,
-  config?: SWRConfiguration,
-): UseQueryDetailReturn<T> {
-  const { data, error, isLoading } = useSWR(params ? [path, params] : null, {
-    fetcher: (args) => sendRuntimeMessage("request", ...args),
-    ...config,
-  });
+  config?: SWRInfiniteConfiguration,
+) {
+  return useQueryList<ChzzkPagination<T>>(
+    path,
+    (data) => get(data, "content.page.next"),
+    (data) => has(data, "content.page.next"),
+    params,
+    config,
+  );
+}
 
-  return [
-    get(data, "data.0"),
-    {
-      isLoading,
-      error,
+export function useOffsetQueryList<T = any>(
+  path: string,
+  params?: Dictionary<unknown> | null,
+  config?: SWRInfiniteConfiguration,
+) {
+  return useQueryList<ChzzkOffset & T>(
+    path,
+    (data) => {
+      const content = get(data, "content");
+      return content != null ? { offset: content.offset + content.limit } : null;
     },
-  ];
-}
-
-export function useClips(params?: Dictionary<unknown> | null, config?: SWRInfiniteConfiguration) {
-  return useQueryList<HelixClip>("clips", params, config);
-}
-
-export function useVideos(params?: Dictionary<unknown> | null, config?: SWRInfiniteConfiguration) {
-  return useQueryList<HelixVideo>("videos", params, config);
+    (data) => {
+      const content = get(data, "content");
+      return content != null && content.offset + content.limit < content.totalCount;
+    },
+    params,
+    config,
+  );
 }
 
 export function useStreams(params?: Dictionary<unknown> | null, config?: SWRInfiniteConfiguration) {
-  const [settings, { isLoading }] = useSettings(config);
+  return useCursorQueryList<ChzzkLive>("v1/lives", params, config);
+}
 
-  const queryParams = useMemo(() => {
-    if (isLoading) {
-      return null;
-    }
-
-    let language;
-
-    if (settings.streams.withFilters) {
-      language = settings.streams.selectedLanguages;
-    }
-
-    return { ...params, language };
-  }, [isLoading, params, settings]);
-
-  return useQueryList<HelixStream>("streams", queryParams, config);
+export function useLiveDetail(id: string, config?: SWRConfiguration) {
+  return useSWR(
+    ["liveDetail", id],
+    async () =>
+      (config?.fallbackData ||
+        (await sendRuntimeMessage("request", `v2/channels/${id}/live-detail`))
+          ?.content) as ChzzkLive,
+    config,
+  );
 }
 
 export function useSearchChannels(
   params?: Dictionary<unknown> | null,
   config?: SWRInfiniteConfiguration,
 ) {
-  return useQueryList<HelixChannelSearchResult>("search/channels", params, config);
+  return useCursorQueryList<{ channel: ChzzkChannel }>("v1/search/channels", params, config);
+}
+
+export function useSearchStreams(
+  params?: Dictionary<unknown> | null,
+  config?: SWRInfiniteConfiguration,
+) {
+  return useCursorQueryList<{ channel: ChzzkChannel; live: ChzzkLive }>(
+    "v1/search/lives",
+    params,
+    config,
+  );
+}
+
+export function useSearchVideos(
+  params?: Dictionary<unknown> | null,
+  config?: SWRInfiniteConfiguration,
+) {
+  return useCursorQueryList<{ channel: ChzzkChannel; video: ChzzkVideo }>(
+    "v1/search/videos",
+    params,
+    config,
+  );
 }
 
 export function useSearchCategories(
   params?: Dictionary<unknown> | null,
   config?: SWRInfiniteConfiguration,
 ) {
-  return useQueryList<HelixCategorySearchResult>("search/categories", params, config);
+  return useOffsetQueryList<{ lounges: ChzzkLounge[] }>(
+    "https://comm-api.game.naver.com/nng_main/v2/search/lounges",
+    params,
+    config,
+  );
 }
 
-export function useTopCategories(
-  params?: Dictionary<unknown> | null,
-  config?: SWRInfiniteConfiguration,
-) {
-  return useQueryList<HelixGame>("games/top", params, config);
-}
-
-export function useCategories(
-  params?: Dictionary<unknown> | null,
-  config?: SWRInfiniteConfiguration,
-) {
-  return useQueryList<HelixGame>("games", params, config);
-}
-
-export function useCategory(id?: number | string, config?: SWRConfiguration) {
-  return useQueryDetail<HelixGame>("games", id ? { id } : null, config);
-}
-
-export function useFollowedChannels(options?: UseStoreOptions) {
-  const [currentUser] = useCurrentUser(options);
-
+export function useTopCategories(config?: SWRConfiguration) {
   return useSWR(
-    currentUser ? ["followedChannels", currentUser.id] : null,
+    "categories",
     async () => {
-      if (currentUser == null) {
+      const result = await sendRuntimeMessage("request", "https://api.multichzzk.tv/categories");
+
+      if (!result?.length) {
         return [];
       }
 
-      const fetchPage = async (after?: string) => {
-        const { data, pagination } = await sendRuntimeMessage("request", "channels/followed", {
-          userId: currentUser.id,
-          first: 100,
-          after,
-        });
+      return (result as ChzzkCategory[]).filter((c) => c.id !== "none");
+    },
+    config,
+  );
+}
 
-        if (pagination.cursor) {
-          data.push(...(await fetchPage(pagination.cursor)));
-        }
+export function useCategory(id?: string) {
+  return useSWR(
+    id != null ? ["category", id] : null,
+    async () => {
+      if (id === "talk") {
+        return {
+          loungeId: "talk",
+          loungeName: "talk",
+          backgroundMobileImageUrl: null,
+          logoImageSquareUrl: "",
+        };
+      }
 
-        return data as HelixFollowedChannel[];
-      };
-
-      return fetchPage();
+      const result = await sendRuntimeMessage(
+        "request",
+        `https://comm-api.game.naver.com/nng_main/v1/lounge/info/${id}`,
+      );
+      return result.content as ChzzkLounge;
     },
     {
       suspense: true,
@@ -199,26 +212,26 @@ export function useFollowedChannels(options?: UseStoreOptions) {
   );
 }
 
-function createFetcherByID<T>(path: string) {
-  return (id: string[], config?: SWRConfiguration) =>
-    useSWR(
-      id.length > 0 ? ["itemsByID", path, id] : null,
-      async () => {
-        const groups = chunk(id, 100);
+export function useFollowedChannels(options?: UseStoreOptions) {
+  const [currentUser] = useCurrentUser(options);
 
-        const promises = await allPromises(groups, async (id) => {
-          const { data } = await sendRuntimeMessage("request", path, {
-            id,
-          });
+  return useSWR(
+    currentUser ? ["followedChannels", currentUser.userIdHash] : null,
+    async () => {
+      if (currentUser == null) {
+        return [];
+      }
 
-          return data as T[];
-        });
+      const { content } = await sendRuntimeMessage("request", "v1/channels/followings");
 
-        return flatMap(promises);
-      },
-      config,
-    );
+      if (!content?.followingList?.length) {
+        return [];
+      }
+
+      return content.followingList as ChzzkFollowedChannel[];
+    },
+    {
+      suspense: true,
+    },
+  );
 }
-
-export const useGamesByID = createFetcherByID<HelixGame>("games");
-export const useUsersByID = createFetcherByID<HelixUser>("users");

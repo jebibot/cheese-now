@@ -1,10 +1,10 @@
-import { escapeRegExp } from "lodash-es";
+import { escapeRegExp, get } from "lodash-es";
 
 export function isEmpty<T extends unknown[]>(value?: T): value is undefined {
   return !value?.length;
 }
 
-export function matchFields<T>(value: T, fields: Array<keyof T>, query: string): boolean {
+export function matchFields<T>(value: T, fields: string[], query: string): boolean {
   if (query.length === 0) {
     return true;
   }
@@ -12,7 +12,7 @@ export function matchFields<T>(value: T, fields: Array<keyof T>, query: string):
   const searchPattern = new RegExp(escapeRegExp(query), "i");
 
   return fields.some((fieldName) => {
-    const fieldValue = value[fieldName];
+    const fieldValue = get(value, fieldName);
 
     if (typeof fieldValue !== "string") {
       return false;
@@ -22,7 +22,7 @@ export function matchFields<T>(value: T, fields: Array<keyof T>, query: string):
   });
 }
 
-export function filterList<T>(values: T[], fields: Array<keyof T>, query: string): T[] {
+export function filterList<T>(values: T[], fields: string[], query: string): T[] {
   if (query.length === 0) {
     return values;
   }

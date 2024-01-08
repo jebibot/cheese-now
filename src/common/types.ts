@@ -42,14 +42,18 @@ export interface DropdownMenuSettings {
   customActions: CustomAction[];
 }
 
-export type FollowedStreamSortField = "gameName" | "startedAt" | "userLogin" | "viewerCount";
+export type FollowedStreamSortField =
+  | "liveInfo.liveCategoryValue"
+  | "liveInfo.openDate"
+  | "channel.channelName"
+  | "liveInfo.concurrentUserCount";
 
 export interface FollowedStreamState {
   sortDirection: SortDirection;
   sortField: FollowedStreamSortField;
 }
 
-export type FollowedUserSortField = "followedAt" | "login";
+export type FollowedUserSortField = "followedAt" | "channelName";
 
 export interface FollowedUserState {
   sortDirection: SortDirection;
@@ -66,10 +70,9 @@ export interface Settings {
 }
 
 export interface CurrentUser {
-  id: string;
-  login: string;
-  displayName: string;
-  profileImageUrl: string;
+  userIdHash: string;
+  nickname: string;
+  profileImageUrl: string | null;
 }
 
 export type CollectionType = "category" | "user";
@@ -81,107 +84,116 @@ export interface Collection {
   items: string[];
 }
 
-export interface HelixCategorySearchResult {
-  boxArtUrl: string;
+export interface ChzzkCategory {
   id: string;
   name: string;
+  count?: number;
+  logo?: string;
 }
 
-export interface HelixChannelSearchResult {
-  broadcasterLogin: string;
-  displayName: string;
-  gameId: string;
-  gameName: string;
-  id: string;
-  isLive: boolean;
-  title: string;
-  thumbnailUrl: string;
-}
-
-export interface HelixClip {
-  id: string;
-  url: string;
-  embedUrl: string;
-  broadcasterId: string;
-  broadcasterName: string;
-  creatorId: string;
-  creatorName: string;
-  videoId: string;
-  gameId: string;
-  language: string;
-  title: string;
-  viewCount: string;
-  createdAt: string;
-  thumbnailUrl: string;
-  duration: number;
-  vodOffset: number;
-}
-
-export interface HelixFollowedChannel {
-  broadcasterId: string;
-  broadcasterLogin: string;
-  broadcasterName: string;
-  followedAt: string;
-}
-
-export interface HelixGame {
-  boxArtUrl: string;
-  id: string;
-  igdbId: string;
-  name: string;
-}
-
-export interface HelixStream {
-  id: string;
-  userId: string;
-  userLogin: string;
-  userName: string;
-  gameId: string;
-  gameName: string;
-  type: string;
-  title: string;
-  tags: null | string[];
-  viewerCount: number;
-  startedAt: string;
-  language: string;
-  thumbnailUrl: string;
-  isMature: boolean;
-}
-
-export interface HelixUser {
-  id: string;
-  login: string;
-  displayName: string;
-  broadcasterType: string;
-  description: string;
-  profileImageUrl: string;
-  offlineImageUrl: string;
-  createdAt: string;
-}
-
-export interface HelixVideo {
-  id: string;
-  streamId: string;
-  userId: string;
-  userLogin: string;
-  userName: string;
-  title: string;
-  description: string;
-  createdAt: string;
-  publishedAt: string;
-  url: string;
-  thumbnailUrl: string;
-  viewable: string;
-  viewCount: string;
-  language: string;
-  type: string;
-  duration: string;
-}
-
-export interface HelixResponse<T> {
-  data: Array<T>;
-
-  pagination: {
-    cursor?: string;
+export interface ChzzkChannel {
+  channelId: string;
+  channelName: string;
+  channelImageUrl: string | null;
+  verifiedMark: boolean;
+  channelDescription?: string;
+  followerCount?: number;
+  openLive?: boolean;
+  personalData?: {
+    following?: {
+      following: boolean;
+      notification: boolean;
+      followDate: string | null;
+    };
+    privateUserBlock?: boolean;
   };
+}
+
+export interface ChzzkFollowedChannel {
+  channelId: string;
+  channel: ChzzkChannel;
+  streamer?: {
+    openLive: boolean;
+  };
+  liveInfo: ChzzkLiveInfo;
+}
+
+export interface ChzzkFollowing {
+  totalCount: number;
+  totalPage: number;
+  followingList: ChzzkFollowedChannel[];
+}
+
+export interface ChzzkLive extends ChzzkLiveInfo {
+  liveId: number;
+  liveImageUrl: string | null;
+  defaultThumbnailImageUrl: string | null;
+  accumulateCount: number;
+  openDate: string;
+  adult: boolean;
+  categoryType: string | null;
+  liveCategory: string;
+  channel: ChzzkChannel;
+}
+
+export interface ChzzkLiveInfo {
+  liveTitle: string;
+  concurrentUserCount: number;
+  liveCategoryValue: string;
+}
+
+export interface ChzzkLounge {
+  loungeId: string;
+  loungeName: string;
+  backgroundMobileImageUrl: string | null;
+  logoImageSquareUrl: string;
+}
+
+export interface ChzzkUser {
+  hasProfile: boolean;
+  userIdHash: string;
+  nickname: string;
+  profileImageUrl: string | null;
+  penalties: unknown;
+  officialNotiAgree: boolean;
+  officialNotiAgreeUpdatedDate: string | null;
+  verifiedMark: boolean;
+  loggedIn: boolean;
+}
+
+export interface ChzzkVideo {
+  videoNo: number;
+  videoId: string;
+  videoTitle: string;
+  videoType: string;
+  publishDate: string;
+  thumbnailImageUrl: string;
+  duration: number;
+  readCount: number;
+  channelId: string;
+  publishDateAt: number;
+  adult: boolean;
+  categoryType: string;
+  videoCategory: string;
+  videoCategoryValue: string;
+}
+
+export interface ChzzkPagination<T> {
+  size: number;
+  page: {
+    next: any;
+  } | null;
+  data: T[];
+}
+
+export interface ChzzkOffset {
+  totalCount: number;
+  offset: number;
+  limit: number;
+}
+
+export interface ChzzkResponse<T> {
+  code: number;
+  content: T | null;
+  message: string | null;
 }

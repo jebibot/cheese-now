@@ -1,10 +1,10 @@
-import { init } from "@sentry/browser";
-import { isPlainObject, lowerCase, reduce } from "lodash-es";
+import { init, captureException } from "@sentry/browser";
+import { lowerCase, reduce } from "lodash-es";
 import { MouseEvent } from "react";
 
 import { ClickBehavior } from "./constants";
 import { stores } from "./stores";
-import { Dictionary, FontSize, HelixStream } from "./types";
+import { Dictionary, FontSize } from "./types";
 
 export const t = browser.i18n.getMessage;
 
@@ -17,22 +17,26 @@ export function setupSentry() {
   });
 }
 
+export function reportException(error: any) {
+  captureException(error);
+}
+
 export function getBaseFontSize(value: FontSize): string {
   switch (value) {
     case "smallest":
-      return "12px";
-
-    case "small":
       return "13px";
 
+    case "small":
+      return "14px";
+
     case "large":
-      return "15px";
+      return "16px";
 
     case "largest":
-      return "16px";
+      return "17px";
   }
 
-  return "14px";
+  return "15px";
 }
 
 export async function openUrl(url: string, event?: MouseEvent, shiftKey = false): Promise<void> {
@@ -125,26 +129,4 @@ export function tokenify(input: string): string {
 
 export function matchString(input: string, searchString: string): boolean {
   return tokenify(input).includes(tokenify(searchString));
-}
-
-export function changeCase(input: any, mapper: (key: string) => string): any {
-  if (Array.isArray(input)) {
-    return input.map((value) => changeCase(value, mapper));
-  }
-
-  if (isPlainObject(input)) {
-    const result: any = {};
-
-    for (const [name, value] of Object.entries(input)) {
-      result[mapper(name)] = changeCase(value, mapper);
-    }
-
-    return result;
-  }
-
-  return input;
-}
-
-export function isRerunStream(stream?: HelixStream): boolean {
-  return stream?.tags?.includes("Rerun") ?? false;
 }

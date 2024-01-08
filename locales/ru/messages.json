@@ -21,7 +21,7 @@
     "message": "Загрузить ещё"
   },
   "buttonText_login": {
-    "message": "Войти в Twitch"
+    "message": "Войти в NAVER"
   },
   "buttonText_reloadExtension": {
     "message": "Перезагрузить расширение"
@@ -54,10 +54,10 @@
     "message": "Подтвердить Удаление"
   },
   "confirmTitle_reload": {
-    "message": "Ой-йо, Gumbo больше не отвечает!"
+    "message": "Ой-йо, Cheese Now больше не отвечает!"
   },
   "confirmTitle_reset": {
-    "message": "Вы собираетесь сбросить Gumbo!"
+    "message": "Вы собираетесь сбросить Cheese Now!"
   },
   "detailText_followingSince": {
     "message": "Отслеживает с $1"
@@ -105,10 +105,10 @@
     "message": "Видео не найдены"
   },
   "extensionDescription": {
-    "message": "Пухлый компаньон сохраняющий актуальными ваши ощущения от Twitch"
+    "message": "Пухлый компаньон сохраняющий актуальными ваши ощущения от CHZZK"
   },
   "extensionName": {
-    "message": "Gumbo: Twitch компаньон"
+    "message": "Cheese Now: CHZZK компаньон"
   },
   "helpText_customAction_url": {
     "message": "Пример:$1"
@@ -150,7 +150,7 @@
     "message": "Перевод"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo - это бесплатное расширение, которое не собирает и не продает личные данные</p><p>Донаты, хоть и необязательны, но очень ценны, так как поддерживают мою работу и побуждают меня предлагать продукты самого высокого качества.</p><p>Спасибо за вашу поддержку!</p>"
+    "message": "<p>Cheese Now - это бесплатное расширение, которое не собирает и не продает личные данные</p><p>Донаты, хоть и необязательны, но очень ценны, так как поддерживают мою работу и побуждают меня предлагать продукты самого высокого качества.</p><p>Спасибо за вашу поддержку!</p>"
   },
   "messageText_typeSearchCategories": {
     "message": "Начните печатать для поиска категории"
@@ -165,10 +165,10 @@
     "message": "Просмотреть изменения"
   },
   "notificationMessage_accessExpired": {
-    "message": "Ваш токен доступа к Twitch просрочен, пожалуйста пере-авторизуйтесь для получения нового."
+    "message": "Ваш токен доступа к CHZZK просрочен, пожалуйста пере-авторизуйтесь для получения нового."
   },
   "notificationMessage_extensionUpdated": {
-    "message": "Gumbo обновлён до версии $1."
+    "message": "Cheese Now обновлён до версии $1."
   },
   "notificationMessage_streamOnline": {
     "message": "$1 онлайн!"

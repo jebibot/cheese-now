@@ -1,18 +1,17 @@
-import { IconHeart, IconInfoCircle, IconPower, IconSettings } from "@tabler/icons-react";
+import { IconInfoCircle, IconSettings } from "@tabler/icons-react";
 import { useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { sendRuntimeMessage, t } from "~/common/helpers";
+import { t } from "~/common/helpers";
 import { CurrentUser } from "~/common/types";
 
 import AboutModal from "./modals/AboutModal";
-import DonateModal from "./modals/DonateModal";
 
 import DropdownMenu from "./DropdownMenu";
 import Image from "./Image";
 
 const Wrapper = styled.button`
-  ${tw`bg-white dark:bg-black flex-none overflow-hidden relative rounded-full w-10 hover:(ring-2 ring-offset-2 ring-offset-white dark:ring-offset-black ring-purple-500)`}
+  ${tw`bg-white dark:bg-black flex-none overflow-hidden relative rounded-full w-10 hover:(ring-2 ring-offset-2 ring-offset-white dark:ring-offset-black ring-emerald-500)`}
 `;
 
 interface ProfileBadgeProps {
@@ -22,7 +21,6 @@ interface ProfileBadgeProps {
 
 function ProfileBadge(props: ProfileBadgeProps) {
   const [isAboutOpen, setAboutOpen] = useState(false);
-  const [isDonateOpen, setDonateOpen] = useState(false);
 
   return (
     <>
@@ -45,37 +43,21 @@ function ProfileBadge(props: ProfileBadgeProps) {
               setAboutOpen(true);
             },
           },
-          {
-            type: "separator",
-          },
-          {
-            type: "normal",
-            title: t("optionValue_donate"),
-            icon: <IconHeart size="1.25rem" />,
-            onClick() {
-              setDonateOpen(true);
-            },
-          },
-          {
-            type: "separator",
-          },
-          {
-            type: "normal",
-            title: t("optionValue_logout"),
-            icon: <IconPower size="1.25rem" />,
-            onClick() {
-              sendRuntimeMessage("revoke");
-            },
-          },
         ]}
       >
         <Wrapper className={props.className}>
-          {props.user && <Image src={props.user.profileImageUrl} ratio={1} />}
+          <Image
+            src={
+              props.user?.profileImageUrl
+                ? `${props.user.profileImageUrl}?type=f120_120_na`
+                : "https://ssl.pstatic.net/cmstatic/nng/img/img_anonymous_square_gray_opacity2x.png"
+            }
+            ratio={1}
+          />
         </Wrapper>
       </DropdownMenu>
 
       {isAboutOpen && <AboutModal onClose={() => setAboutOpen(false)} />}
-      {isDonateOpen && <DonateModal onClose={() => setDonateOpen(false)} />}
     </>
   );
 }

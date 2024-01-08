@@ -36,8 +36,8 @@ function Hero(props: HeroProps) {
       <StyledWordmark />
       <Author>
         by{" "}
-        <a href="https://seldszar.fr" target="_blank" rel="noopener noreferrer">
-          Seldszar
+        <a href="https://www.chatlink.app" target="_blank" rel="noopener noreferrer">
+          chatlink.app
         </a>
       </Author>
       <Description>{manifest.description}</Description>

@@ -25,7 +25,7 @@ export function Component() {
   const { data: followedChannels = [] } = useFollowedChannels();
 
   const sortedFollowedChannels = useMemo(
-    () => sortBy(followedChannels, "broadcasterName"),
+    () => sortBy(followedChannels, "channel.channelName"),
     [followedChannels],
   );
 
@@ -53,8 +53,8 @@ export function Component() {
           {...register("notifications.selectedUsers")}
           disabled={!settings.notifications.enabled || !settings.notifications.withFilters}
           options={sortedFollowedChannels.map((follow) => ({
-            title: <ChannelName login={follow.broadcasterLogin} name={follow.broadcasterName} />,
-            value: follow.broadcasterId,
+            title: <ChannelName login={follow.channelId} name={follow.channel.channelName} />,
+            value: follow.channelId,
           }))}
         />
       </Section>

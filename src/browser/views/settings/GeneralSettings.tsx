@@ -74,10 +74,6 @@ export function Component() {
                 label: t("optionValue_openChat"),
                 value: ClickAction.OpenChat,
               },
-              {
-                label: t("optionValue_popout"),
-                value: ClickAction.Popout,
-              },
             ]}
           />
         </FormField>

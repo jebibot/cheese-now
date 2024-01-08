@@ -1,3 +1,4 @@
+import "pretendard/dist/web/variable/pretendardvariable.css";
 import "overlayscrollbars/overlayscrollbars.css";
 
 import { Global } from "@emotion/react";
@@ -43,8 +44,17 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
 
         <Global
           styles={css`
+            @font-face {
+              font-family: "Pretendard Fallback";
+              src: local("Malgun Gothic");
+              ascent-override: 110.17%;
+              descent-override: 27.91%;
+              line-gap-override: 0%;
+              size-adjust: 86.43%;
+            }
+
             ::selection {
-              ${tw`bg-purple-500 text-white`}
+              ${tw`bg-emerald-500 text-white`}
             }
 
             html,
@@ -64,10 +74,10 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
               ${tw`absolute z-50`}
             }
 
-            .os-theme-gumbo {
-              --os-handle-bg-active: ${theme("colors.purple.600")};
-              --os-handle-bg-hover: ${theme("colors.purple.400")};
-              --os-handle-bg: ${theme("colors.purple.500")};
+            .os-theme-chzzk-now {
+              --os-handle-bg-active: ${theme("colors.emerald.600")};
+              --os-handle-bg-hover: ${theme("colors.emerald.400")};
+              --os-handle-bg: ${theme("colors.emerald.500")};
               --os-handle-border-radius: ${theme("borderRadius.full")};
               --os-handle-interactive-area-offset: 3px;
               --os-padding-axis: 3px;

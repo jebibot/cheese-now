@@ -1,4 +1,3 @@
-import { flatMap, sortBy } from "lodash-es";
 import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -6,56 +5,35 @@ import { t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
-import { useCollections, useGamesByID, useTopCategories } from "~/browser/hooks";
+import { useTopCategories } from "~/browser/hooks";
 
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
 import CollectionList from "~/browser/components/CollectionList";
 import Layout from "~/browser/components/Layout";
-import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
 
 const Collection = styled.div`
-  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 px-4 py-2`}
-`;
-
-const LoadMore = styled.div`
-  ${tw`px-4 py-2`}
+  ${tw`gap-x-2 gap-y-3 grid grid-cols-4 px-4 py-2`}
 `;
 
 export function ChildComponent() {
-  const [collections] = useCollections("category", {
-    suspense: true,
-  });
-
-  const { data: categories = [] } = useGamesByID(flatMap(collections, "items"), {
-    suspense: true,
-  });
-
-  const [pages, { fetchMore, hasMore, isValidating, refresh }] = useTopCategories(
-    {
-      first: 100,
-    },
-    {
-      suspense: true,
-    },
-  );
+  const { data: categories = [], mutate } = useTopCategories({ suspense: true });
 
   useRefreshHandler(async () => {
-    await refresh();
+    await mutate();
   });
 
-  if (isEmpty(pages)) {
+  if (isEmpty(categories)) {
     return <Splash>{t("errorText_emptyCategories")}</Splash>;
   }
 
   return (
     <CollectionList
       type="category"
-      items={sortBy(categories, "name")}
+      items={categories}
       getItemIdentifier={(item) => item.id}
-      defaultItems={pages.flatMap((page) => page.data)}
-      render={({ collection, items, createCollection }) => (
+      render={({ items, createCollection }) => (
         <>
           <Collection>
             {items.map((category) => (
@@ -67,14 +45,6 @@ export function ChildComponent() {
               </Link>
             ))}
           </Collection>
-
-          {collection == null && hasMore && (
-            <LoadMore>
-              <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
-                {t("buttonText_loadMore")}
-              </MoreButton>
-            </LoadMore>
-          )}
         </>
       )}
     />

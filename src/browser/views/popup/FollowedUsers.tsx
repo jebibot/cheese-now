@@ -1,18 +1,13 @@
-import { find, map, orderBy } from "lodash-es";
+import { orderBy } from "lodash-es";
 import { useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { isRerunStream, t } from "~/common/helpers";
-import { FollowedUserState, HelixUser } from "~/common/types";
+import { t } from "~/common/helpers";
+import { ChzzkChannel, FollowedUserState } from "~/common/types";
 
 import { useRefreshHandler } from "~/browser/contexts";
-import { isEmpty, matchFields } from "~/browser/helpers";
-import {
-  useFollowedChannels,
-  useFollowedStreams,
-  useFollowedUserState,
-  useUsersByID,
-} from "~/browser/hooks";
+import { formatDate, isEmpty, matchFields } from "~/browser/helpers";
+import { useFollowedChannels, useFollowedUserState } from "~/browser/hooks";
 
 import UserCard from "~/browser/components/cards/UserCard";
 
@@ -27,7 +22,7 @@ const FollowingSince = styled.div`
   ${tw`truncate`}
 `;
 
-interface FormattedUser extends HelixUser {
+interface FormattedUser extends ChzzkChannel {
   followedAt: Date;
   isRerun: boolean;
   isLive: boolean;
@@ -41,47 +36,30 @@ interface ChildComponentProps {
 function ChildComponent(props: ChildComponentProps) {
   const { followedUserState, searchQuery } = props;
 
-  const [followedStreams] = useFollowedStreams({
-    suspense: true,
-  });
-
   const { data: followedChannels = [], mutate } = useFollowedChannels({
-    suspense: true,
-  });
-
-  const { data: followedUsers = [] } = useUsersByID(map(followedChannels, "broadcasterId"), {
     suspense: true,
   });
 
   const filteredUsers = useMemo(() => {
     const items = new Array<FormattedUser>();
 
-    followedUsers.forEach((user) => {
-      const matchesFields = matchFields(user, ["description", "displayName", "login"], searchQuery);
-      const stream = find(followedStreams, {
-        userId: user.id,
-        type: "live",
-      });
-
-      const isLive = !!stream;
+    followedChannels.forEach((channel) => {
+      const matchesFields = matchFields(channel, ["channel.channelName"], searchQuery);
+      const isLive = !!channel.streamer?.openLive;
 
       if (matchesFields && [isLive, null].includes(followedUserState.status)) {
-        const channel = find(followedChannels, {
-          broadcasterId: user.id,
-        });
-
         items.push({
-          ...user,
+          ...channel.channel,
+          followedAt: new Date(channel.channel.personalData?.following?.followDate ?? 0),
 
-          followedAt: new Date(channel?.followedAt ?? 0),
-          isRerun: isRerunStream(stream),
+          isRerun: false,
           isLive,
         });
       }
     });
 
     return orderBy(items, followedUserState.sortField, followedUserState.sortDirection);
-  }, [followedChannels, followedStreams, followedUsers, followedUserState, searchQuery]);
+  }, [followedChannels, followedUserState, searchQuery]);
 
   useRefreshHandler(async () => {
     await mutate();
@@ -95,19 +73,19 @@ function ChildComponent(props: ChildComponentProps) {
     <CollectionList
       type="user"
       items={filteredUsers}
-      getItemIdentifier={(item) => item.id}
+      getItemIdentifier={(item) => item.channelId}
       render={({ items, createCollection }) => (
         <Collection>
           {items.map((item) => (
             <UserCard
-              key={item.id}
-              onNewCollection={() => createCollection([item.id])}
+              key={item.channelId}
+              onNewCollection={() => createCollection([item.channelId])}
               isRerun={item.isRerun}
               isLive={item.isLive}
               user={item}
             >
               <FollowingSince>
-                {t("detailText_followingSince", item.followedAt.toLocaleString())}
+                {t("detailText_followingSince", formatDate(item.followedAt))}
               </FollowingSince>
             </UserCard>
           ))}
@@ -153,7 +131,7 @@ export function Component() {
             onChange: setSortField,
             options: [
               {
-                value: "login",
+                value: "channelName",
                 label: t("optionValue_sort_name"),
               },
               {

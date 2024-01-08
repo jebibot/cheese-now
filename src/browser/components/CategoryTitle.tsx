@@ -1,9 +1,8 @@
-import { useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t, template } from "~/common/helpers";
-import { HelixGame } from "~/common/types";
+import { t } from "~/common/helpers";
+import { ChzzkLounge } from "~/common/types";
 
 import ExternalAnchor from "./ExternalAnchor";
 import Image from "./Image";
@@ -25,7 +24,7 @@ const BackgroundImage = styled(Image)`
 `;
 
 const Thumbnail = styled.div`
-  ${tw`bg-black mb-2 overflow-hidden rounded shadow`}
+  ${tw`mb-2 overflow-hidden rounded shadow`}
 `;
 
 const ThumbnailImage = styled(Image)`
@@ -41,38 +40,39 @@ const TabList = styled.div`
 `;
 
 const Tab = styled(NavLink)`
-  ${tw`border-b border-neutral-200 flex-1 py-3 relative text-center text-neutral-600 dark:(border-neutral-800 text-neutral-400) [&.active]:(border-purple-500 font-medium text-black dark:text-white)!`}
+  ${tw`border-b border-neutral-200 flex-1 py-3 relative text-center text-neutral-600 dark:(border-neutral-800 text-neutral-400) [&.active]:(border-emerald-500 font-medium text-black dark:text-white)!`}
 `;
 
 export interface CategoryTitleProps {
   className?: string;
-  category: HelixGame;
+  category: ChzzkLounge;
 }
 
 function CategoryTitle(props: CategoryTitleProps) {
   const { category } = props;
 
-  const boxArtUrl = useMemo(
-    () => template(category.boxArtUrl, { "{width}": 66, "{height}": 88 }),
-    [category.boxArtUrl],
-  );
-
   return (
     <Wrapper className={props.className}>
       <Background>
-        <BackgroundImage src={boxArtUrl} />
+        <BackgroundImage src={category.backgroundMobileImageUrl || category.logoImageSquareUrl} />
       </Background>
 
       <Inner>
         <Thumbnail>
-          <ThumbnailImage src={boxArtUrl} ratio={4 / 3} />
+          <ThumbnailImage
+            src={
+              category.logoImageSquareUrl ||
+              "https://ssl.pstatic.net/static/nng/resource/img/ico-game-icon.png"
+            }
+            ratio={1}
+          />
         </Thumbnail>
 
-        <Name>{category.name}</Name>
+        <Name>{category.loungeName}</Name>
 
-        {category.igdbId && (
-          <ExternalAnchor to={`https://igdb.com/g/${parseInt(category.igdbId).toString(36)}`}>
-            {t("buttonText_viewOn", "IGDB")}
+        {!["talk"].includes(category.loungeId) && (
+          <ExternalAnchor to={`https://game.naver.com/lounge/${category.loungeId}`}>
+            {t("buttonText_viewOn", "게임 라운지")}
           </ExternalAnchor>
         )}
       </Inner>
@@ -80,7 +80,6 @@ function CategoryTitle(props: CategoryTitleProps) {
       <TabList>
         <Tab to="streams">{t("titleText_streams")}</Tab>
         <Tab to="videos">{t("titleText_videos")}</Tab>
-        <Tab to="clips">{t("titleText_clips")}</Tab>
       </TabList>
     </Wrapper>
   );

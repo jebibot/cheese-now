@@ -1,8 +1,6 @@
-import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
-import { template } from "~/common/helpers";
-import { HelixCategorySearchResult, HelixGame } from "~/common/types";
+import { ChzzkCategory } from "~/common/types";
 
 import DropdownButton from "../DropdownButton";
 import Image from "../Image";
@@ -15,7 +13,7 @@ const StyledDropdownButton = styled(DropdownButton)`
 `;
 
 const CoverImage = styled(Image)`
-  ${tw`bg-black rounded`}
+  ${tw`rounded`}
 `;
 
 const Cover = styled.div`
@@ -31,7 +29,7 @@ const Name = styled.div`
 `;
 
 export interface CategoryCardProps {
-  category: HelixGame | HelixCategorySearchResult;
+  category: ChzzkCategory;
 
   onNewCollection?(): void;
 }
@@ -39,15 +37,13 @@ export interface CategoryCardProps {
 function CategoryCard(props: CategoryCardProps) {
   const { category } = props;
 
-  const boxArtUrl = useMemo(
-    () => template(category.boxArtUrl, { "{width}": 78, "{height}": 104 }),
-    [category.boxArtUrl],
-  );
-
   return (
     <div>
       <Cover>
-        <CoverImage src={boxArtUrl} ratio={4 / 3} />
+        <CoverImage
+          src={category.logo || "https://ssl.pstatic.net/static/nng/resource/img/ico-game-icon.png"}
+          ratio={1}
+        />
 
         <CategoryDropdown category={category} onNewCollection={props.onNewCollection}>
           <StyledDropdownButton />

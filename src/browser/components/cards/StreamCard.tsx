@@ -2,9 +2,9 @@ import { useMemo } from "react";
 import tw, { styled } from "twin.macro";
 
 import { t, template } from "~/common/helpers";
-import { HelixStream } from "~/common/types";
+import { ChzzkChannel, ChzzkLive, ChzzkLiveInfo } from "~/common/types";
 
-import { useClickAction, useNow } from "~/browser/hooks";
+import { useClickAction, useLiveDetail } from "~/browser/hooks";
 
 import Anchor from "../Anchor";
 import Card from "../Card";
@@ -50,47 +50,50 @@ const Wrapper = styled(Card)`
 `;
 
 export interface StreamCardProps {
-  stream: HelixStream;
+  channel: ChzzkChannel;
+  stream: ChzzkLive | ChzzkLiveInfo;
 
   onNewCollection?(): void;
 }
 
 function StreamCard(props: StreamCardProps) {
-  const { stream } = props;
+  const { channel, stream } = props;
 
-  const defaultAction = useClickAction(stream.userLogin);
-  const currentTime = useNow(60_000);
+  const defaultAction = useClickAction(channel.channelId);
 
-  const startDate = useMemo(
-    () => (stream.startedAt ? new Date(stream.startedAt) : null),
-    [stream.startedAt],
-  );
+  const { data: liveDetail } = useLiveDetail(channel.channelId, {
+    fallbackData: "liveId" in stream ? stream : undefined,
+  });
+
+  const startDate = useMemo(() => {
+    if (liveDetail?.openDate) {
+      // @ts-expect-error update liveInfo
+      stream.openDate = liveDetail.openDate;
+      return new Date(liveDetail.openDate);
+    }
+  }, [liveDetail?.openDate]);
 
   const previewImage = useMemo(() => {
-    const url = new URL(
-      template(stream.thumbnailUrl, {
-        "{height}": 54,
-        "{width}": 96,
-      }),
-    );
-
-    url.searchParams.set("t", String(currentTime.getTime()));
-
-    return url.href;
-  }, [currentTime, stream.thumbnailUrl]);
+    if (liveDetail?.adult) {
+      return "https://ssl.pstatic.net/static/nng/glive/resource/p/static/media/image_age_restriction_search.ba30cccc6b1fd2dbf431.png";
+    }
+    return template(liveDetail?.defaultThumbnailImageUrl || liveDetail?.liveImageUrl || "", {
+      "{type}": 480,
+    });
+  }, [liveDetail?.adult, liveDetail?.defaultThumbnailImageUrl, liveDetail?.liveImageUrl]);
 
   return (
     <Anchor to={defaultAction}>
       <Wrapper
         title={
           <Title>
-            <UserName login={stream.userLogin} name={stream.userName} />
+            <UserName login={channel.channelId} name={channel.channelName} />
             <ViewerCount stream={stream} />
           </Title>
         }
         subtitle={
-          <Tooltip content={stream.title}>
-            <span>{stream.title || <i>{t("detailText_noTitle")}</i>}</span>
+          <Tooltip content={stream.liveTitle}>
+            <span>{stream.liveTitle || <i>{t("detailText_noTitle")}</i>}</span>
           </Tooltip>
         }
         leftOrnament={
@@ -101,12 +104,16 @@ function StreamCard(props: StreamCardProps) {
         }
       >
         <CategoryName>
-          <Tooltip content={stream.gameName}>
-            <span>{stream.gameName || <i>{t("detailText_noCategory")}</i>}</span>
+          <Tooltip content={stream.liveCategoryValue}>
+            <span>{stream.liveCategoryValue || <i>{t("detailText_noCategory")}</i>}</span>
           </Tooltip>
         </CategoryName>
 
-        <StreamDropdown stream={stream} onNewCollection={props.onNewCollection}>
+        <StreamDropdown
+          channel={channel}
+          category={liveDetail?.liveCategory}
+          onNewCollection={props.onNewCollection}
+        >
           <StyledDropdownButton />
         </StreamDropdown>
       </Wrapper>

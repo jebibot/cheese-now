@@ -1,56 +1,28 @@
-# <img src="public/icon-48.png" width="38" align="left" /> Gumbo
+# <img src="public/icon-48.png" width="38" align="left" /> Cheese Now
 
-> Swollen companion keeping you updated on your Twitch experience
+> 치지직 방송 목록 및 알림
 
-Gumbo is a spiritual successor to Twitch Now, allowing you to access your Twitch experience outside the main ecosystem.
+[Chrome Web Store (Chromium, Edge, Whale 호환)](https://chromewebstore.google.com/detail/cemmjndpjenafbjmafgjcpdnfafbkhee) | [Firefox Add-ons](https://addons.mozilla.org/addon/%EC%B9%98%EC%A6%88-%EB%82%98%EC%9A%B0-%EC%B9%98%EC%A7%80%EC%A7%81-%EB%8F%84%EC%9A%B0%EB%AF%B8/)
 
-From its user interface, you can check your followed channels and track live streams, as well as discover the popular streams and categories of the moment, all with the ability to customize your experience through a multitude of preferences at your disposal.
+![스크린샷 1](./images/1.png)
+![스크린샷 2](./images/2.png)
 
-This extension also informs you when a channel goes online or changes category, with the possibility to choose the notifications you want.
+팝업을 통해 팔로우한 치지직 채널과 생방송을 확인할 수 있으며, 컬렉션을 통해 팔로우 목록을 정리할 수 있습니다. 더불어 지금 인기 있는 방송과 카테고리를 살펴볼 수 있습니다.
 
-## Install
-
-[link-chrome]: https://chrome.google.com/webstore/detail/gumbo-twitch-companion/aalmjfpohaedoddkobnibokclgeefamn 'Version published on Chrome Web Store'
-[link-firefox]: https://addons.mozilla.org/firefox/addon/gumbo-twitch-companion 'Version published on Mozilla Add-ons'
-
-[<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome.svg" width="48" alt="Chrome" valign="middle">][link-chrome] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/aalmjfpohaedoddkobnibokclgeefamn.svg?label=%20">][link-chrome] also compatible with [<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge.svg" width="24" alt="Edge" valign="middle">][link-chrome] [<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera.svg" width="24" alt="Opera" valign="middle">][link-chrome]
-
-[<img src="https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox.svg" width="48" alt="Firefox" valign="middle">][link-firefox] [<img valign="middle" src="https://img.shields.io/amo/v/gumbo-twitch-companion.svg?label=%20">][link-firefox]
+또한, 스트리머가 방송을 시작하거나 카테고리를 변경하면 알림을 받을 수 있습니다.
 
 ## Build
 
-1. Create (or use) a [Twitch Application](https://dev.twitch.tv/console/apps).
+Install the dependencies (`yarn install`) and build for the desired platform:
 
-2. Create a `.env` file in the root of your project with the above Twitch Application's Client ID:
-
-    ```
-    TWITCH_CLIENT_ID=tk0nbw3xavxi9eeor93rpsg6ppxtyd
-    ```
-
-3. Install the dependencies (`yarn install`) and build for the desired platform:
-
-    - `yarn build:chrome` if you want to build for Google Chrome
-    - `yarn build:firefox` if you want to build for Mozilla Firefox
-
-## Contributing
-
-### Donating
-
-Gumbo is a free extension that does not collect or sell personal user data.
-
-Donations, although optional but greatly appreciated, help support my work and encourage me to offer the best quality products possible.
-
-If you'd like to help my initiative, please consider contributing using [PayPal](https://go.seldszar.fr/paypal) or [Coinbase](https://go.seldszar.fr/coinbase).
-
-### Translating
-
-You can help translate Gumbo by [registering on Weblate](https://hosted.weblate.org/accounts/register), and join the [translation project](https://hosted.weblate.org/projects/gumbo).
+- `yarn build:chrome` if you want to build for Google Chrome
+- `yarn build:firefox` if you want to build for Mozilla Firefox
 
 ## Frequently Asked Questions
 
 ### Why does it break randomly?
 
-Gumbo can break randomly due to a bug coming from Chromium, which can put the extension in a state of limbo.
+Cheese Now can break randomly due to a bug coming from Chromium, which can put the extension in a state of limbo.
 This is a known issue, which is unfortunately in the hands of the Chromium team.
 
 - https://bugs.chromium.org/p/chromium/issues/detail?id=1271154
@@ -64,7 +36,8 @@ Workarounds exist, but aren't worth the trouble.
 
 ## License
 
-Copyright (c) 2022-present Alexandre Breteau
+Copyright (c) 2022-present Alexandre Breteau<br />
+Copyright (c) 2024 Jebibot
 
 This software is released under the terms of the MIT License.
 See the [LICENSE](LICENSE) file for further information.

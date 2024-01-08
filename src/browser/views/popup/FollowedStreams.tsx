@@ -33,12 +33,16 @@ function ChildComponent(props: ChildComponentProps) {
   const filteredStreams = useMemo(() => {
     let { sortDirection } = followedStreamState;
 
-    if (followedStreamState.sortField === "startedAt") {
+    if (followedStreamState.sortField === "liveInfo.openDate") {
       sortDirection = sortDirection === "asc" ? "desc" : "asc";
     }
 
     return orderBy(
-      filterList(followedStreams, ["gameName", "title", "userLogin", "userName"], searchQuery),
+      filterList(
+        followedStreams,
+        ["liveInfo.liveCategoryValue", "liveInfo.liveTitle", "channel.channelName"],
+        searchQuery,
+      ),
       followedStreamState.sortField,
       sortDirection,
     );
@@ -60,14 +64,15 @@ function ChildComponent(props: ChildComponentProps) {
     <CollectionList
       type="user"
       items={filteredStreams}
-      getItemIdentifier={(item) => item.userId}
+      getItemIdentifier={(item) => item.channelId}
       render={({ items, createCollection }) => (
         <Collection>
           {items.map((item) => (
             <StreamCard
-              key={item.id}
-              stream={item}
-              onNewCollection={() => createCollection([item.userId])}
+              key={item.channelId}
+              stream={item.liveInfo}
+              channel={item.channel}
+              onNewCollection={() => createCollection([item.channelId])}
             />
           ))}
         </Collection>
@@ -93,19 +98,19 @@ export function Component() {
             onChange: setSortField,
             options: [
               {
-                value: "userLogin",
+                value: "channel.channelName",
                 label: t("optionValue_sort_login"),
               },
               {
-                value: "gameName",
+                value: "liveInfo.liveCategoryValue",
                 label: t("optionValue_sort_category"),
               },
               {
-                value: "startedAt",
+                value: "liveInfo.openDate",
                 label: t("optionValue_sort_uptime"),
               },
               {
-                value: "viewerCount",
+                value: "liveInfo.concurrentUserCount",
                 label: t("optionValue_sort_viewers"),
               },
             ],

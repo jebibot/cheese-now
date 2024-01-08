@@ -38,7 +38,7 @@ function IgnoredCategoryForm(props: IgnoredCategoryFormProps) {
         <Button type="button" color="transparent" onClick={() => props.onCancel()}>
           {t("buttonText_cancel")}
         </Button>
-        <Button color="purple" disabled={!isFormValid}>
+        <Button color="emerald" disabled={!isFormValid}>
           {t("buttonText_submit")}
         </Button>
       </ActionList>

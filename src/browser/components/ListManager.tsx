@@ -192,7 +192,7 @@ function ListManager<T extends ItemType>(props: ListManagerProps<T>) {
 
           <Button
             fullWidth
-            color="purple"
+            color="emerald"
             icon={<IconPlus size="1.25rem" />}
             onClick={() => setModalState({ index: -1, type: "mutate" })}
           >
@@ -214,7 +214,7 @@ function ListManager<T extends ItemType>(props: ListManagerProps<T>) {
           <IconList size="1.75rem" />
           <EmptyMessage>{t("errorText_emptyList")}</EmptyMessage>
           <Button
-            color="purple"
+            color="emerald"
             icon={<IconPlus size="1.25rem" />}
             onClick={() => setModalState({ index: -1, type: "mutate" })}
           >

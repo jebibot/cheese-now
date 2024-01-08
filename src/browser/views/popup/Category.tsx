@@ -2,7 +2,7 @@ import { Outlet, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
-import { HelixGame } from "~/common/types";
+import { ChzzkLounge } from "~/common/types";
 
 import { useCategory } from "~/browser/hooks";
 
@@ -15,15 +15,13 @@ const Title = styled(CategoryTitle)`
 `;
 
 export interface OutletContext {
-  category: HelixGame;
+  category: ChzzkLounge;
 }
 
 function ChildComponent() {
-  const params = useParams();
+  const { categoryId } = useParams();
 
-  const [category] = useCategory(params.categoryId, {
-    suspense: true,
-  });
+  const { data: category } = useCategory(categoryId);
 
   if (category == null) {
     return <Splash>{t("detailText_noCategory")}</Splash>;

@@ -1,22 +1,19 @@
 import { ReactElement, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { openUrl, t, template } from "~/common/helpers";
-import { HelixChannelSearchResult } from "~/common/types";
+import { ChzzkChannel } from "~/common/types";
 
 import { useSettings } from "~/browser/hooks";
 
 import DropdownMenu, { DropdownMenuItemProps } from "../DropdownMenu";
 
 export interface ChannelDropdownProps {
-  channel: HelixChannelSearchResult;
+  channel: ChzzkChannel;
   children: ReactElement;
 }
 
 function ChannelDropdown(props: ChannelDropdownProps) {
   const { channel } = props;
-
-  const navigate = useNavigate();
 
   const [settings] = useSettings();
 
@@ -29,17 +26,13 @@ function ChannelDropdown(props: ChannelDropdownProps) {
       {
         type: "normal",
         title: t("optionValue_openChannel"),
-        onClick: (event) => openUrl(`https://twitch.tv/${channel.broadcasterLogin}`, event),
+        onClick: (event) => openUrl(`https://chzzk.naver.com/live/${channel.channelId}`, event),
       },
       {
         type: "normal",
         title: t("optionValue_openChat"),
-        onClick: (event) => openUrl(`https://twitch.tv/${channel.broadcasterLogin}/chat`, event),
-      },
-      {
-        type: "normal",
-        title: t("optionValue_popout"),
-        onClick: (event) => openUrl(`https://twitch.tv/${channel.broadcasterLogin}/popout`, event),
+        onClick: (event) =>
+          openUrl(`https://chzzk.naver.com/live/${channel.channelId}/chat`, event),
       },
     );
 
@@ -53,8 +46,7 @@ function ChannelDropdown(props: ChannelDropdownProps) {
           onClick: (event) =>
             openUrl(
               template(item.url, {
-                "{login}": channel.broadcasterLogin,
-                "{id}": channel.id,
+                "{id}": channel.channelId,
               }),
               event,
             ),
@@ -69,27 +61,18 @@ function ChannelDropdown(props: ChannelDropdownProps) {
       {
         type: "normal",
         title: t("optionValue_about"),
-        onClick: (event) => openUrl(`https://twitch.tv/${channel.broadcasterLogin}/about`, event),
+        onClick: (event) => openUrl(`https://chzzk.naver.com/${channel.channelId}/about`, event),
       },
       {
         type: "normal",
         title: t("optionValue_schedule"),
         onClick: (event) =>
-          openUrl(`https://twitch.tv/${channel.broadcasterLogin}/schedule`, event),
+          openUrl(`https://chzzk.naver.com/${channel.channelId}/community`, event),
       },
       {
         type: "normal",
         title: t("optionValue_videos"),
-        onClick: (event) => openUrl(`https://twitch.tv/${channel.broadcasterLogin}/videos`, event),
-      },
-      {
-        type: "separator",
-      },
-      {
-        type: "normal",
-        disabled: !channel.gameId,
-        title: t("optionValue_gotoCategory"),
-        onClick: () => navigate(`/categories/${channel.gameId}`),
+        onClick: (event) => openUrl(`https://chzzk.naver.com/${channel.channelId}/videos`, event),
       },
     );
 

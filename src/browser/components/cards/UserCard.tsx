@@ -1,8 +1,7 @@
 import { ReactNode } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "~/common/helpers";
-import { HelixUser } from "~/common/types";
+import { ChzzkChannel } from "~/common/types";
 
 import { useClickAction } from "~/browser/hooks";
 
@@ -11,12 +10,11 @@ import Card from "../Card";
 import ChannelName from "../ChannelName";
 import DropdownButton from "../DropdownButton";
 import Image from "../Image";
-import Tooltip from "../Tooltip";
 
 import UserDropdown from "../dropdowns/UserDropdown";
 
 const Thumbnail = styled.div`
-  ${tw`bg-black overflow-hidden relative rounded-full w-12`}
+  ${tw`overflow-hidden relative rounded-full w-12`}
 `;
 
 const StyledDropdownButton = styled(DropdownButton)`
@@ -54,7 +52,7 @@ export interface UserCardProps {
   children?: ReactNode;
   isRerun?: boolean;
   isLive?: boolean;
-  user: HelixUser;
+  user: ChzzkChannel;
 
   onNewCollection?(): void;
 }
@@ -62,22 +60,24 @@ export interface UserCardProps {
 function UserCard(props: UserCardProps) {
   const { user } = props;
 
-  const defaultAction = useClickAction(user.login);
+  const defaultAction = useClickAction(user.channelId);
 
   return (
     <Anchor to={defaultAction}>
       <Wrapper
         isLive={props.isLive}
         isRerun={props.isRerun}
-        title={<ChannelName login={user.login} name={user.displayName} />}
-        subtitle={
-          <Tooltip content={user.description}>
-            <span>{user.description || <i>{t("detailText_noDescription")}</i>}</span>
-          </Tooltip>
-        }
+        title={<ChannelName login={user.channelId} name={user.channelName} />}
         leftOrnament={
           <Thumbnail>
-            <Image src={user.profileImageUrl} ratio={1} />
+            <Image
+              src={
+                user.channelImageUrl
+                  ? `${user.channelImageUrl}?type=f120_120_na`
+                  : "https://ssl.pstatic.net/cmstatic/nng/img/img_anonymous_square_gray_opacity2x.png"
+              }
+              ratio={1}
+            />
           </Thumbnail>
         }
       >

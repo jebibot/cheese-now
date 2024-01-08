@@ -28,7 +28,7 @@ function CustomActionForm(props: CustomActionFormProps) {
   );
 
   const exampleUrl = useMemo(
-    () => template(value.url, { "{login}": "gumbo", "{id}": "42069" }),
+    () => template(value.url, { "{id}": "1234567890abcdef1234567890abcdef" }),
     [value.url],
   );
 
@@ -60,10 +60,6 @@ function CustomActionForm(props: CustomActionFormProps) {
                   label: t("titleText_channelId"),
                   value: "{id}",
                 },
-                {
-                  label: t("titleText_channelLogin"),
-                  value: "{login}",
-                },
               ]}
             >
               <IconInfoCircle size="1.25rem" />
@@ -75,7 +71,7 @@ function CustomActionForm(props: CustomActionFormProps) {
         <Button type="button" color="transparent" onClick={() => props.onCancel()}>
           {t("buttonText_cancel")}
         </Button>
-        <Button color="purple" disabled={!isFormValid}>
+        <Button color="emerald" disabled={!isFormValid}>
           {t("buttonText_submit")}
         </Button>
       </ActionList>

@@ -2,14 +2,14 @@ import { IconPlus } from "@tabler/icons-react";
 import { ReactElement, useMemo } from "react";
 
 import { openUrl, t } from "~/common/helpers";
-import { HelixCategorySearchResult, HelixGame } from "~/common/types";
+import { ChzzkCategory } from "~/common/types";
 
 import { useCollections } from "~/browser/hooks";
 
 import DropdownMenu, { DropdownMenuItemProps } from "../DropdownMenu";
 
 export interface CategoryDropdownProps {
-  category: HelixGame | HelixCategorySearchResult;
+  category: ChzzkCategory;
   children: ReactElement;
 
   onNewCollection?(): void;
@@ -21,13 +21,11 @@ function CategoryDropdown(props: CategoryDropdownProps) {
   const [collections, { toggleCollectionItem }] = useCollections("category");
 
   const items = useMemo(() => {
-    const igdbId = "igdbId" in category ? category.igdbId : "";
-
     const result = new Array<DropdownMenuItemProps>({
       type: "normal",
-      disabled: !igdbId,
-      title: t("buttonText_viewOn", "IGDB"),
-      onClick: (event) => openUrl(`https://igdb.com/g/${parseInt(igdbId).toString(36)}`, event),
+      disabled: ["talk"].includes(category.id),
+      title: t("buttonText_viewOn", "게임 라운지"),
+      onClick: (event) => openUrl(`https://game.naver.com/lounge/${category.id}`, event),
     });
 
     if (props.onNewCollection) {

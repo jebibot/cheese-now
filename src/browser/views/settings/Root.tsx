@@ -18,7 +18,7 @@ const Aside = styled.div`
 `;
 
 const MenuItem = styled(NavLink)`
-  ${tw`block text-neutral-600 text-lg hover:text-black dark:(text-neutral-400 hover:text-white) [&.active]:text-purple-500!`}
+  ${tw`block text-neutral-600 text-lg hover:text-black dark:(text-neutral-400 hover:text-white) [&.active]:text-emerald-500!`}
 `;
 
 const Header = styled.div`
@@ -62,7 +62,6 @@ export function Component() {
           <MenuItem to="badge">{t("titleText_badge")}</MenuItem>
           <MenuItem to="dropdown-menu">{t("titleText_dropdownMenu")}</MenuItem>
           <MenuItem to="notification">{t("titleText_notifications")}</MenuItem>
-          <MenuItem to="stream">{t("titleText_streams")}</MenuItem>
           <MenuItem to="advanced">{t("titleText_advanced")}</MenuItem>
         </Aside>
         <Body>

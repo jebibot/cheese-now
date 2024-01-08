@@ -46,3 +46,11 @@ export function parseDuration(value: string): number {
 export function parseFormatDuration(value: string): string {
   return formatTime(parseDuration(value));
 }
+
+const dateFormatter = new Intl.DateTimeFormat(undefined, {
+  dateStyle: "medium",
+  timeStyle: "short",
+});
+export function formatDate(value: string | number | Date): string {
+  return dateFormatter.format(new Date(value));
+}

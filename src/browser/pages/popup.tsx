@@ -51,6 +51,10 @@ const router = createHashRouter([
             lazy: () => import("../views/popup/SearchChannels"),
           },
           {
+            path: "streams",
+            lazy: () => import("../views/popup/SearchStreams"),
+          },
+          {
             path: "categories",
             lazy: () => import("../views/popup/SearchCategories"),
           },
@@ -78,10 +82,6 @@ const router = createHashRouter([
               {
                 path: "videos",
                 lazy: () => import("../views/popup/CategoryVideos"),
-              },
-              {
-                path: "clips",
-                lazy: () => import("../views/popup/CategoryClips"),
               },
             ],
           },

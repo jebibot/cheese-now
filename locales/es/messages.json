@@ -21,7 +21,7 @@
     "message": "Cargar más"
   },
   "buttonText_login": {
-    "message": "Conectar con Twitch"
+    "message": "Conectar con NAVER"
   },
   "buttonText_reloadExtension": {
     "message": "Recargar extensión"
@@ -54,10 +54,10 @@
     "message": "Confirmar el borrado"
   },
   "confirmTitle_reload": {
-    "message": "Oh no, ¡Gumbo ha dejado de responder!"
+    "message": "Oh no, ¡Cheese Now ha dejado de responder!"
   },
   "confirmTitle_reset": {
-    "message": "¡Estás a punto de restablecer Gumbo!"
+    "message": "¡Estás a punto de restablecer Cheese Now!"
   },
   "detailText_followingSince": {
     "message": "Siguiendo desde $1"
@@ -105,10 +105,10 @@
     "message": "No se han encontrado videos"
   },
   "extensionDescription": {
-    "message": "La bola rechoncha te mantiene actualizado en tu experiencia de Twitch"
+    "message": "La bola rechoncha te mantiene actualizado en tu experiencia de CHZZK"
   },
   "extensionName": {
-    "message": "Gumbo: Compañero de Twitch"
+    "message": "Cheese Now: Compañero de CHZZK"
   },
   "helpText_customAction_url": {
     "message": "Ejemplo: $1"
@@ -150,7 +150,7 @@
     "message": "Traducción"
   },
   "messageText_donate": {
-    "message": "<p>Gumbo es una extensión gratuita que no recolecta ni vende datos personales del usuario.</p><p>Las donaciones, aunque opcionales son muy apreciadas, ayudan a respaldar mi trabajo y me animan a ofrecer productos de la mejor calidad posible.</p><p>¡Gracias por tu apoyo!</p>"
+    "message": "<p>Cheese Now es una extensión gratuita que no recolecta ni vende datos personales del usuario.</p><p>Las donaciones, aunque opcionales son muy apreciadas, ayudan a respaldar mi trabajo y me animan a ofrecer productos de la mejor calidad posible.</p><p>¡Gracias por tu apoyo!</p>"
   },
   "messageText_typeSearchCategories": {
     "message": "Empieza a escribir para buscar en las categorías"
@@ -165,10 +165,10 @@
     "message": "Haz clic para ver los cambios"
   },
   "notificationMessage_accessExpired": {
-    "message": "Tu token de acceso a Twitch ha expirado, por favor re-autoriza para obtener uno nuevo."
+    "message": "Tu token de acceso a CHZZK ha expirado, por favor re-autoriza para obtener uno nuevo."
   },
   "notificationMessage_extensionUpdated": {
-    "message": "Gumbo se ha actualizado a la versión $1."
+    "message": "Cheese Now se ha actualizado a la versión $1."
   },
   "notificationMessage_streamOnline": {
     "message": "¡$1 está en directo!"

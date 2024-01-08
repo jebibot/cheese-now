@@ -12,19 +12,19 @@ import Section from "../Section";
 const allLinks = [
   {
     title: t("linkText_repository"),
-    url: "https://github.com/seldszar/gumbo",
+    url: "https://github.com/jebibot/cheese-now",
   },
   {
     title: t("linkText_issues"),
-    url: "https://github.com/seldszar/gumbo/issues",
+    url: "https://github.com/jebibot/cheese-now/issues",
   },
   {
     title: t("linkText_releases"),
-    url: "https://github.com/seldszar/gumbo/releases",
+    url: "https://github.com/jebibot/cheese-now/releases",
   },
   {
     title: t("linkText_translate"),
-    url: "https://hosted.weblate.org/projects/gumbo",
+    url: "https://github.com/jebibot/cheese-now",
   },
 ];
 

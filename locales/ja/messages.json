@@ -21,7 +21,7 @@
     "message": "もっと読み込む"
   },
   "buttonText_login": {
-    "message": "Twitchでログイン"
+    "message": "NAVERでログイン"
   },
   "buttonText_reloadExtension": {
     "message": "拡張機能のリロード"
@@ -54,10 +54,10 @@
     "message": "削除の確認"
   },
   "confirmTitle_reload": {
-    "message": "あ、Gumboが反応しなくなった！"
+    "message": "あ、Cheese Nowが反応しなくなった！"
   },
   "confirmTitle_reset": {
-    "message": "Gumboをリセットしようとしています！"
+    "message": "Cheese Nowをリセットしようとしています！"
   },
   "detailText_followingSince": {
     "message": "$1からフォロー中"
@@ -105,10 +105,10 @@
     "message": "ビデオが見つかりません"
   },
   "extensionDescription": {
-    "message": "ふくれたコンパニオンがTwitch体験をアップデート"
+    "message": "ふくれたコンパニオンがCHZZK体験をアップデート"
   },
   "extensionName": {
-    "message": "Gumbo: Twitchコンパニオン"
+    "message": "Cheese Now: CHZZKコンパニオン"
   },
   "helpText_customAction_url": {
     "message": "例：$1"
@@ -150,7 +150,7 @@
     "message": "翻訳"
   },
   "messageText_donate": {
-    "message": "<p>Gumboは、ユーザーの個人情報を収集したり販売したりしない、無料の拡張機能です。</p><p>寄付は任意ですが、ぜひお願いします。私の仕事をサポートし、可能な限り最高の品質の製品を提供するための励みになります。</p><p>ご支援ありがとうございます。</p>"
+    "message": "<p>Cheese Nowは、ユーザーの個人情報を収集したり販売したりしない、無料の拡張機能です。</p><p>寄付は任意ですが、ぜひお願いします。私の仕事をサポートし、可能な限り最高の品質の製品を提供するための励みになります。</p><p>ご支援ありがとうございます。</p>"
   },
   "messageText_typeSearchCategories": {
     "message": "カテゴリを検索するために入力を開始する"
@@ -165,10 +165,10 @@
     "message": "クリックして変更を確認する"
   },
   "notificationMessage_accessExpired": {
-    "message": "Twitchのアクセストークンが期限切れです。再認証して新しいものを入手してください。"
+    "message": "CHZZKのアクセストークンが期限切れです。再認証して新しいものを入手してください。"
   },
   "notificationMessage_extensionUpdated": {
-    "message": "Gumboがバージョン$1にアップデートされました。"
+    "message": "Cheese Nowがバージョン$1にアップデートされました。"
   },
   "notificationMessage_streamOnline": {
     "message": "$1 がオンラインになりました！"

@@ -14,12 +14,17 @@ module.exports = {
       black: colors.black,
       transparent: colors.transparent,
       neutral: colors.neutral,
-      purple: colors.purple,
+      emerald: colors.emerald,
       red: colors.red,
     },
     extend: {
       fontFamily: {
-        sans: ["Noto Sans Display", ...defaultTheme.fontFamily.sans],
+        sans: [
+          "Pretendard Variable",
+          "Pretendard",
+          "Pretendard Fallback",
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
     },
   },

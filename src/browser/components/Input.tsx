@@ -9,7 +9,7 @@ const Wrapper = styled.fieldset`
   ${tw`flex gap-3 rounded bg-neutral-300 dark:bg-neutral-700 px-3 disabled:(cursor-default opacity-25)!`}
 
   input {
-    ${tw`appearance-none bg-transparent flex-1 outline-none px-1 py-2 text-black dark:text-white`}
+    ${tw`appearance-none bg-transparent flex-1 w-0 outline-none px-1 py-2 text-black dark:text-white`}
   }
 `;
 

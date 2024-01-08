@@ -11,7 +11,7 @@ export function Scrollable(props: ScrollableProps) {
     <OverlayScrollbarsComponent
       options={{
         scrollbars: {
-          theme: "os-theme-gumbo",
+          theme: "os-theme-chzzk-now",
         },
       }}
       {...props}

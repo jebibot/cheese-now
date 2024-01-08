@@ -1,17 +1,20 @@
 import { Fragment } from "react";
+import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
-import { useStreams } from "~/browser/hooks";
+import { useSearchStreams } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
-import Layout from "~/browser/components/Layout";
+import Loader from "~/browser/components/Loader";
 import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
+
+import type { OutletContext } from "./Search";
 
 const List = styled.div`
   ${tw`py-2`}
@@ -21,9 +24,18 @@ const LoadMore = styled.div`
   ${tw`p-4 pt-0`}
 `;
 
-export function ChildComponent() {
-  const [pages, { error, fetchMore, hasMore, isValidating, refresh }] = useStreams(
-    {},
+interface ChildComponentProps {
+  searchQuery: string;
+}
+
+function ChildComponent(props: ChildComponentProps) {
+  const { searchQuery } = props;
+
+  const [pages, { fetchMore, refresh, hasMore, isValidating }] = useSearchStreams(
+    {
+      keyword: searchQuery,
+      size: 12,
+    },
     {
       suspense: true,
     },
@@ -33,12 +45,8 @@ export function ChildComponent() {
     await refresh();
   });
 
-  if (error) {
-    return <Splash>{error.message}</Splash>;
-  }
-
   if (isEmpty(pages)) {
-    return <Splash>{t("errorText_emptyStreams")}</Splash>;
+    return <Splash>{t("messageText_typeSearchChannels")}</Splash>;
   }
 
   return (
@@ -47,7 +55,7 @@ export function ChildComponent() {
         {pages.map((page, index) => (
           <Fragment key={index}>
             {page.content?.data.map((stream) => (
-              <StreamCard key={stream.liveId} stream={stream} channel={stream.channel} />
+              <StreamCard key={stream.live.liveId} channel={stream.channel} stream={stream.live} />
             ))}
           </Fragment>
         ))}
@@ -65,9 +73,17 @@ export function ChildComponent() {
 }
 
 export function Component() {
+  const { searchQuery } = useOutletContext<OutletContext>();
+
+  if (searchQuery.length === 0) {
+    return <Splash>{t("messageText_typeSearchChannels")}</Splash>;
+  }
+
   return (
-    <Layout>
-      <ChildComponent />
-    </Layout>
+    <Loader>
+      <ChildComponent {...{ searchQuery }} />
+    </Loader>
   );
 }
+
+export default Component;

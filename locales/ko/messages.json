@@ -143,6 +143,9 @@
   "inputLabel_showRerunsInFollowedStreams": {
     "message": "팔로우한 방송에서 재방송 표시"
   },
+  "inputLabel_useChzzkSettings": {
+    "message": "치지직 알림 설정 사용"
+  },
   "linkText_issues": {
     "message": "버그 & 제안"
   },

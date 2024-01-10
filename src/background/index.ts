@@ -89,11 +89,18 @@ async function filterFollowedStreams(streams: ChzzkFollowedChannel[]) {
   ]);
 
   const {
-    notifications: { ignoredCategories, selectedUsers, withCategoryChanges, withFilters },
+    notifications: {
+      ignoredCategories,
+      selectedUsers,
+      withCategoryChanges,
+      withChzzkSettings,
+      withFilters,
+    },
   } = settings;
 
   return streams.filter((stream) => {
     if (
+      (withChzzkSettings && stream.channel.personalData?.following?.notification === false) ||
       (withFilters && !selectedUsers.includes(stream.channelId)) ||
       ignoredCategories.some(matchString.bind(null, stream.liveInfo.liveCategoryValue))
     ) {

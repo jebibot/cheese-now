@@ -42,6 +42,12 @@ export function Component() {
           {t("inputLabel_categoryChangeNotifications")}
         </StyledSwitch>
         <StyledSwitch
+          {...register("notifications.withChzzkSettings")}
+          disabled={!settings.notifications.enabled}
+        >
+          {t("inputLabel_useChzzkSettings")}
+        </StyledSwitch>
+        <StyledSwitch
           {...register("notifications.withFilters")}
           disabled={!settings.notifications.enabled}
         >

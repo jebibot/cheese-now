@@ -143,6 +143,9 @@
   "inputLabel_showRerunsInFollowedStreams": {
     "message": "Show Reruns in followed streams"
   },
+  "inputLabel_useChzzkSettings": {
+    "message": "Use CHZZK settings"
+  },
   "linkText_issues": {
     "message": "Bugs & Suggestions"
   },

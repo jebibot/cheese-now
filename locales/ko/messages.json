@@ -248,6 +248,9 @@
   "optionValue_logout": {
     "message": "로그아웃"
   },
+  "optionValue_multiview": {
+    "message": "멀티뷰"
+  },
   "optionValue_newCollection": {
     "message": "새 컬렉션"
   },

@@ -1,15 +1,15 @@
-import { IconPencil, IconSettings, IconTrash } from "@tabler/icons-react";
+import { IconBoxMultiple, IconPencil, IconSettings, IconTrash } from "@tabler/icons-react";
 import { reject } from "lodash-es";
 import { Fragment, ReactNode, useMemo, useState } from "react";
 import tw, { styled } from "twin.macro";
 
-import { t } from "~/common/helpers";
+import { openUrl, t } from "~/common/helpers";
 import { Collection, CollectionType } from "~/common/types";
 
 import { useCollections } from "~/browser/hooks";
 
 import Accordion from "./Accordion";
-import DropdownMenu from "./DropdownMenu";
+import DropdownMenu, { DropdownMenuItemProps } from "./DropdownMenu";
 
 import CollectionModal from "./modals/CollectionModal";
 import DeleteModal from "./modals/DeleteModal";
@@ -121,6 +121,25 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
               aside={
                 <DropdownMenu
                   items={[
+                    ...(collection.type === "user"
+                      ? ([
+                          {
+                            type: "normal",
+                            title: t("optionValue_multiview"),
+                            icon: <IconBoxMultiple size="1.25rem" />,
+                            onClick: (event) =>
+                              openUrl(
+                                `https://multichzzk.tv/${chunk.items
+                                  .map(props.getItemIdentifier)
+                                  .join("/")}`,
+                                event,
+                              ),
+                          },
+                          {
+                            type: "separator",
+                          },
+                        ] as DropdownMenuItemProps[])
+                      : []),
                     {
                       type: "normal",
                       title: t("optionValue_update"),

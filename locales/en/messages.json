@@ -248,6 +248,9 @@
   "optionValue_logout": {
     "message": "Logout"
   },
+  "optionValue_multiview": {
+    "message": "Multiview"
+  },
   "optionValue_newCollection": {
     "message": "New collection"
   },

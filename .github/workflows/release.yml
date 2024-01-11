@@ -66,7 +66,7 @@ jobs:
               cd dist && npx chrome-webstore-upload-cli upload --auto-publish
               ;;
             firefox)
-              cd dist && npx web-ext sign --use-submission-api --channel listed --approval-timeout 60000
+              cd dist && npx web-ext sign --use-submission-api --channel listed --timeout 60000
               ;;
           esac
         env:

@@ -12,5 +12,3 @@
 ### Bug Fixes
 
 * **deps:** update dependency @sentry/browser to ^7.93.0 ([#11](https://github.com/jebibot/cheese-now/issues/11)) ([efaa5b9](https://github.com/jebibot/cheese-now/commit/efaa5b91d68f77aab29dc30f219a0ebc4a37e67b))
-
-## Changelog

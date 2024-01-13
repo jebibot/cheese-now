@@ -2,7 +2,7 @@
 
 > 치지직 방송 목록 및 알림
 
-[Chrome Web Store (Chromium, Edge, Whale 호환)](https://chromewebstore.google.com/detail/cemmjndpjenafbjmafgjcpdnfafbkhee) | [Firefox Add-ons](https://addons.mozilla.org/addon/%EC%B9%98%EC%A6%88-%EB%82%98%EC%9A%B0-%EC%B9%98%EC%A7%80%EC%A7%81-%EB%8F%84%EC%9A%B0%EB%AF%B8/)
+[Chrome Web Store (Chromium, Edge, Whale 호환)](https://chromewebstore.google.com/detail/cemmjndpjenafbjmafgjcpdnfafbkhee) | [Firefox Add-ons](https://addons.mozilla.org/addon/cheese-now/)
 
 ![스크린샷 1](./images/1.png)
 ![스크린샷 2](./images/2.png)

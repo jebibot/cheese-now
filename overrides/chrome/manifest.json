@@ -15,7 +15,7 @@
     "https://api.chzzk.naver.com/*",
     "https://comm-api.game.naver.com/*",
     "https://nng-phinf.pstatic.net/*",
-    "https://api.multichzzk.tv/*"
+    "https://api.chz.app/*"
   ],
   "background": {
     "service_worker": "background.js"

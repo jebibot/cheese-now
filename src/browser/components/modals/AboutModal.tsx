@@ -11,19 +11,19 @@ import Section from "../Section";
 
 const allLinks = [
   {
-    title: t("linkText_repository"),
-    url: "https://github.com/jebibot/cheese-now",
+    title: t("linkText_website"),
+    url: "https://www.chz.app/",
   },
   {
     title: t("linkText_issues"),
-    url: "https://github.com/jebibot/cheese-now/issues",
+    url: "https://discord.gg/9kq3UNKAkz",
   },
   {
     title: t("linkText_releases"),
-    url: "https://github.com/jebibot/cheese-now/releases",
+    url: "https://www.chz.app/now/patch-notes",
   },
   {
-    title: t("linkText_translate"),
+    title: t("linkText_repository"),
     url: "https://github.com/jebibot/cheese-now",
   },
 ];

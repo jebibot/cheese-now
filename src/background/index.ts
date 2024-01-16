@@ -292,7 +292,7 @@ browser.notifications.onClicked.addListener((notificationId) => {
       return openUrl(`https://chzzk.naver.com/live/${data}`);
 
     case "update":
-      return openUrl("https://github.com/jebibot/cheese-now/blob/main/CHANGELOG.md");
+      return openUrl("https://www.chz.app/now/patch-notes");
   }
 });
 

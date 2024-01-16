@@ -175,7 +175,7 @@ export function useTopCategories(config?: SWRConfiguration) {
   return useSWR(
     "categories",
     async () => {
-      const result = await sendRuntimeMessage("request", "https://api.multichzzk.tv/categories");
+      const result = await sendRuntimeMessage("request", "https://api.chz.app/categories");
 
       if (!result?.length) {
         return [];

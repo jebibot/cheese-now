@@ -147,16 +147,19 @@
     "message": "치지직 알림 설정 사용"
   },
   "linkText_issues": {
-    "message": "버그 & 제안"
+    "message": "디스코드"
   },
   "linkText_releases": {
-    "message": "릴리즈 노트"
+    "message": "패치 노트"
   },
   "linkText_repository": {
     "message": "소스 코드"
   },
   "linkText_translate": {
     "message": "번역하기"
+  },
+  "linkText_website": {
+    "message": "웹사이트"
   },
   "messageText_donate": {
     "message": "<p>Cheese Now는 개인 사용자 데이터를 수집하거나 판매하지 않는 무료 확장 프로그램입니다.</p><p>기부는 선택 사항이지만 감사하게 생각하고 있으며, 저에게 동기부여와 함께 작업이 최고의 품질을 제공하는 데에 있어 큰 도움이 됩니다.</p><p>지원해주셔서 감사합니다!</p>"

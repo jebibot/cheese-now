@@ -63,7 +63,7 @@
     "prettier": "^3.2.4",
     "style-loader": "^3.3.4",
     "tailwindcss": "^3.4.1",
-    "twin.macro": "^3.4.0",
+    "twin.macro": "^3.4.1",
     "typescript": "^5.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",

@@ -22,7 +22,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
-    "react-use": "^17.4.4",
+    "react-use": "^17.5.0",
     "superstruct": "^1.0.3",
     "swr": "^2.2.4",
     "webextension-polyfill": "^0.10.0"

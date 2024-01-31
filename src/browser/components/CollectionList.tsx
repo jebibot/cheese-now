@@ -129,7 +129,7 @@ function CollectionList<T extends object>(props: CollectionListProps<T>) {
                             icon: <IconBoxMultiple size="1.25rem" />,
                             onClick: (event) =>
                               openUrl(
-                                `https://multichzzk.tv/${chunk.items
+                                `https://mul.live/${chunk.items
                                   .map(props.getItemIdentifier)
                                   .join("/")}`,
                                 event,

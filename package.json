@@ -13,7 +13,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@floating-ui/react": "^0.26.9",
-    "@sentry/browser": "^7.101.1",
+    "@sentry/browser": "^7.102.0",
     "@tabler/icons-react": "^2.47.0",
     "lodash-es": "^4.17.21",
     "overlayscrollbars": "^2.5.0",

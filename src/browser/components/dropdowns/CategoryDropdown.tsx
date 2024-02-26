@@ -1,7 +1,7 @@
 import { IconPlus } from "@tabler/icons-react";
 import { ReactElement, useMemo } from "react";
 
-import { openUrl, t } from "~/common/helpers";
+import { getCategoryPath, openUrl, t } from "~/common/helpers";
 import { ChzzkCategory } from "~/common/types";
 
 import { useCollections } from "~/browser/hooks";
@@ -23,9 +23,9 @@ function CategoryDropdown(props: CategoryDropdownProps) {
   const items = useMemo(() => {
     const result = new Array<DropdownMenuItemProps>({
       type: "normal",
-      disabled: ["talk"].includes(category.id),
+      disabled: category.categoryType === "GAME",
       title: t("buttonText_viewOn", "게임 라운지"),
-      onClick: (event) => openUrl(`https://game.naver.com/lounge/${category.id}`, event),
+      onClick: (event) => openUrl(`https://game.naver.com/lounge/${category.categoryId}`, event),
     });
 
     if (props.onNewCollection) {
@@ -41,8 +41,8 @@ function CategoryDropdown(props: CategoryDropdownProps) {
           ...collections.map<DropdownMenuItemProps>((collection) => ({
             type: "checkbox",
             title: collection.name,
-            checked: collection.items.includes(category.id),
-            onChange: () => toggleCollectionItem(collection.id, category.id),
+            checked: collection.items.includes(getCategoryPath(category)),
+            onChange: () => toggleCollectionItem(collection.id, getCategoryPath(category)),
           })),
           {
             type: "separator",

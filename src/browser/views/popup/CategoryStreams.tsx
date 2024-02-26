@@ -2,11 +2,11 @@ import { Fragment } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t } from "~/common/helpers";
+import { getCategoryPath, t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
-import { useSearchStreams } from "~/browser/hooks";
+import { useCategoryStreams } from "~/browser/hooks";
 
 import StreamCard from "~/browser/components/cards/StreamCard";
 
@@ -27,11 +27,9 @@ const LoadMore = styled.div`
 function ChildComponent() {
   const { category } = useOutletContext<OutletContext>();
 
-  const [pages, { fetchMore, refresh, hasMore, isValidating }] = useSearchStreams(
-    {
-      keyword: category.loungeName,
-      size: 12,
-    },
+  const [pages, { fetchMore, refresh, hasMore, isValidating }] = useCategoryStreams(
+    getCategoryPath(category),
+    {},
     {
       suspense: true,
     },
@@ -51,7 +49,7 @@ function ChildComponent() {
         {pages.map((page, index) => (
           <Fragment key={index}>
             {page.content?.data.map((stream) => (
-              <StreamCard key={stream.live.liveId} channel={stream.channel} stream={stream.live} />
+              <StreamCard key={stream.liveId} channel={stream.channel} stream={stream} />
             ))}
           </Fragment>
         ))}

@@ -2,7 +2,7 @@ import { get, has } from "lodash-es";
 import useSWR, { SWRConfiguration } from "swr";
 import useSWRInfinite, { SWRInfiniteConfiguration } from "swr/infinite";
 
-import { sendRuntimeMessage } from "~/common/helpers";
+import { allPromises, sendRuntimeMessage } from "~/common/helpers";
 import {
   ChzzkCategory,
   ChzzkChannel,
@@ -120,6 +120,26 @@ export function useStreams(params?: Dictionary<unknown> | null, config?: SWRInfi
   return useCursorQueryList<ChzzkLive>("v1/lives", params, config);
 }
 
+export function useCategoryStreams(
+  path: string,
+  params?: Dictionary<unknown> | null,
+  config?: SWRInfiniteConfiguration,
+) {
+  return useCursorQueryList<ChzzkLive>(`v2/categories/${path}/lives`, params, config);
+}
+
+export function useCategoryVideos(
+  path: string,
+  params?: Dictionary<unknown> | null,
+  config?: SWRInfiniteConfiguration,
+) {
+  return useCursorQueryList<ChzzkVideo & { channel: ChzzkChannel }>(
+    `v2/categories/${path}/videos`,
+    params,
+    config,
+  );
+}
+
 export function useLiveDetail(id: string, config?: SWRConfiguration) {
   return useSWR(
     ["liveDetail", id],
@@ -149,17 +169,6 @@ export function useSearchStreams(
   );
 }
 
-export function useSearchVideos(
-  params?: Dictionary<unknown> | null,
-  config?: SWRInfiniteConfiguration,
-) {
-  return useCursorQueryList<{ channel: ChzzkChannel; video: ChzzkVideo }>(
-    "v1/search/videos",
-    params,
-    config,
-  );
-}
-
 export function useSearchCategories(
   params?: Dictionary<unknown> | null,
   config?: SWRInfiniteConfiguration,
@@ -171,44 +180,29 @@ export function useSearchCategories(
   );
 }
 
-export function useTopCategories(config?: SWRConfiguration) {
-  return useSWR(
-    "categories",
-    async () => {
-      const result = await sendRuntimeMessage("request", "https://api.chz.app/categories");
-
-      if (!result?.length) {
-        return [];
-      }
-
-      return (result as ChzzkCategory[]).filter((c) => c.id !== "none");
-    },
-    config,
-  );
+export function useTopCategories(
+  params?: Dictionary<unknown> | null,
+  config?: SWRInfiniteConfiguration,
+) {
+  return useCursorQueryList<ChzzkCategory>("v1/categories/live", params, config);
 }
 
-export function useCategory(id?: string) {
-  return useSWR(
-    id != null ? ["category", id] : null,
-    async () => {
-      if (id === "talk") {
-        return {
-          loungeId: "talk",
-          loungeName: "talk",
-          backgroundMobileImageUrl: null,
-          logoImageSquareUrl: "",
-        };
-      }
+async function fetchCategory(id: string) {
+  return (await sendRuntimeMessage("request", `v1/categories/${id}/info`))
+    ?.content as ChzzkCategory;
+}
 
-      const result = await sendRuntimeMessage(
-        "request",
-        `https://comm-api.game.naver.com/nng_main/v1/lounge/info/${id}`,
-      );
-      return result.content as ChzzkLounge;
-    },
-    {
-      suspense: true,
-    },
+export function useCategory(id: string) {
+  return useSWR(id != null ? ["category", id] : null, () => fetchCategory(id), {
+    suspense: true,
+  });
+}
+
+export function useCategories(id: string[], config?: SWRConfiguration) {
+  return useSWR(
+    id.length > 0 ? ["categories", id] : null,
+    () => allPromises(id, fetchCategory),
+    config,
   );
 }
 

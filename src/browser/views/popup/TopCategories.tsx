@@ -1,50 +1,80 @@
+import { flatMap, sortBy } from "lodash-es";
 import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t } from "~/common/helpers";
+import { getCategoryPath, t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
-import { useTopCategories } from "~/browser/hooks";
+import { useCategories, useCollections, useTopCategories } from "~/browser/hooks";
 
 import CategoryCard from "~/browser/components/cards/CategoryCard";
 
 import CollectionList from "~/browser/components/CollectionList";
 import Layout from "~/browser/components/Layout";
+import MoreButton from "~/browser/components/MoreButton";
 import Splash from "~/browser/components/Splash";
 
 const Collection = styled.div`
-  ${tw`gap-x-2 gap-y-3 grid grid-cols-4 px-4 py-2`}
+  ${tw`gap-x-2 gap-y-4 grid grid-cols-4 px-4 py-2`}
+`;
+
+const LoadMore = styled.div`
+  ${tw`px-4 py-2`}
 `;
 
 export function ChildComponent() {
-  const { data: categories = [], mutate } = useTopCategories({ suspense: true });
-
-  useRefreshHandler(async () => {
-    await mutate();
+  const [collections] = useCollections("category", {
+    suspense: true,
   });
 
-  if (isEmpty(categories)) {
+  const { data: categories = [] } = useCategories(flatMap(collections, "items"), {
+    suspense: true,
+  });
+
+  const [pages, { fetchMore, hasMore, isValidating, refresh }] = useTopCategories(
+    {
+      size: 20,
+    },
+    {
+      suspense: true,
+    },
+  );
+
+  useRefreshHandler(async () => {
+    await refresh();
+  });
+
+  if (isEmpty(pages)) {
     return <Splash>{t("errorText_emptyCategories")}</Splash>;
   }
 
   return (
     <CollectionList
       type="category"
-      items={categories}
-      getItemIdentifier={(item) => item.id}
-      render={({ items, createCollection }) => (
+      items={sortBy(categories, "categoryValue")}
+      getItemIdentifier={getCategoryPath}
+      defaultItems={pages.flatMap((page) => page.content?.data || [])}
+      render={({ collection, items, createCollection }) => (
         <>
           <Collection>
             {items.map((category) => (
-              <Link key={category.id} to={`/categories/${category.id}`}>
+              <Link key={category.categoryId} to={`/categories/${getCategoryPath(category)}`}>
                 <CategoryCard
                   category={category}
-                  onNewCollection={() => createCollection([category.id])}
+                  onNewCollection={() => createCollection([getCategoryPath(category)])}
                 />
               </Link>
             ))}
           </Collection>
+
+          {collection == null && hasMore && (
+            <LoadMore>
+              <MoreButton isLoading={isValidating} fetchMore={fetchMore}>
+                {t("buttonText_loadMore")}
+              </MoreButton>
+            </LoadMore>
+          )}
         </>
       )}
     />

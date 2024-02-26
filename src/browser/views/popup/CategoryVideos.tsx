@@ -2,11 +2,11 @@ import { Fragment } from "react";
 import { useOutletContext } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import { t } from "~/common/helpers";
+import { getCategoryPath, t } from "~/common/helpers";
 
 import { useRefreshHandler } from "~/browser/contexts";
 import { isEmpty } from "~/browser/helpers";
-import { useSearchVideos } from "~/browser/hooks";
+import { useCategoryVideos } from "~/browser/hooks";
 
 import VideoCard from "~/browser/components/cards/VideoCard";
 
@@ -27,11 +27,9 @@ const LoadMore = styled.div`
 function ChildComponent() {
   const { category } = useOutletContext<OutletContext>();
 
-  const [pages, { fetchMore, hasMore, isValidating, refresh }] = useSearchVideos(
-    {
-      keyword: category.loungeName,
-      size: 12,
-    },
+  const [pages, { fetchMore, hasMore, isValidating, refresh }] = useCategoryVideos(
+    getCategoryPath(category),
+    {},
     {
       suspense: true,
     },
@@ -51,7 +49,7 @@ function ChildComponent() {
         {pages.map((page, index) => (
           <Fragment key={index}>
             {page.content?.data.map((video) => (
-              <VideoCard key={video.video.videoNo} video={video.video} channel={video.channel} />
+              <VideoCard key={video.videoNo} video={video} channel={video.channel} />
             ))}
           </Fragment>
         ))}

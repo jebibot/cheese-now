@@ -4,7 +4,7 @@ import { MouseEvent } from "react";
 
 import { ClickBehavior } from "./constants";
 import { stores } from "./stores";
-import { Dictionary, FontSize } from "./types";
+import { ChzzkCategory, Dictionary, FontSize } from "./types";
 
 export const t = browser.i18n.getMessage;
 
@@ -129,4 +129,8 @@ export function tokenify(input: string): string {
 
 export function matchString(input: string, searchString: string): boolean {
   return tokenify(input).includes(tokenify(searchString));
+}
+
+export function getCategoryPath(category: ChzzkCategory) {
+  return `${category.categoryType}/${category.categoryId}`;
 }

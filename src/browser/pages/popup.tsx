@@ -68,7 +68,7 @@ const router = createHashRouter([
             lazy: () => import("../views/popup/TopCategories"),
           },
           {
-            path: ":categoryId",
+            path: ":categoryType/:categoryId",
             lazy: () => import("../views/popup/Category"),
             children: [
               {

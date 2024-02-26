@@ -59,13 +59,16 @@ function ChildComponent(props: ChildComponentProps) {
         <>
           <Collection>
             {items.map((category) => (
-              <Link key={category.loungeId} to={`/categories/${category.loungeId}`}>
+              <Link key={category.loungeId} to={`/categories/GAME/${category.loungeId}`}>
                 <CategoryCard
                   category={{
-                    id: category.loungeId,
-                    name: category.loungeName,
-                    logo: category.logoImageSquareUrl,
+                    categoryType: "GAME",
+                    categoryId: category.loungeId,
+                    categoryValue: category.loungeName,
+                    posterImageUrl: category.logoImageSquareUrl,
+                    existLounge: true,
                   }}
+                  ratio={1}
                   onNewCollection={() => createCollection([category.loungeId])}
                 />
               </Link>

@@ -2,7 +2,7 @@ import { Outlet, useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
 import { t } from "~/common/helpers";
-import { ChzzkLounge } from "~/common/types";
+import { ChzzkCategory } from "~/common/types";
 
 import { useCategory } from "~/browser/hooks";
 
@@ -15,13 +15,13 @@ const Title = styled(CategoryTitle)`
 `;
 
 export interface OutletContext {
-  category: ChzzkLounge;
+  category: ChzzkCategory;
 }
 
 function ChildComponent() {
-  const { categoryId } = useParams();
+  const { categoryType, categoryId } = useParams();
 
-  const { data: category } = useCategory(categoryId);
+  const { data: category } = useCategory(`${categoryType}/${categoryId}`);
 
   if (category == null) {
     return <Splash>{t("detailText_noCategory")}</Splash>;

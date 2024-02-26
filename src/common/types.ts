@@ -86,10 +86,13 @@ export interface Collection {
 }
 
 export interface ChzzkCategory {
-  id: string;
-  name: string;
-  count?: number;
-  logo?: string;
+  categoryType: string;
+  categoryId: string;
+  categoryValue: string;
+  posterImageUrl: string;
+  openLiveCount?: number;
+  concurrentUserCount?: number;
+  existLounge: boolean;
 }
 
 export interface ChzzkChannel {

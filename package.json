@@ -58,7 +58,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.2",
     "mini-css-extract-plugin": "^2.8.1",
-    "postcss": "^8.4.35",
+    "postcss": "^8.4.36",
     "postcss-loader": "^8.1.1",
     "prettier": "^3.2.5",
     "style-loader": "^3.3.4",

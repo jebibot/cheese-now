@@ -4676,10 +4676,10 @@ optionator@^0.9.3:
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
 
-overlayscrollbars-react@^0.5.4:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/overlayscrollbars-react/-/overlayscrollbars-react-0.5.4.tgz#86199c52bcde6de60650fdbb28ad6fe516e78065"
-  integrity sha512-FPKx9XnXovTnI4+2JXig5uEaTLSEJ6svOwPzIfBBXTHBRNsz2+WhYUmfM0K/BNYxjgDEwuPm+NQhEoOA0RoG1g==
+overlayscrollbars-react@^0.5.5:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/overlayscrollbars-react/-/overlayscrollbars-react-0.5.5.tgz#983fcff9928cd12fff78351573fdb79f463ea414"
+  integrity sha512-PakK1QEV/PAi4XniiTykcSeyoBmfDvgv2uBQ290IaY5ThrwvWg3Zk3Z39hosJYkyrS4mJ0zuIWtlHX4AKd2nZQ==
 
 overlayscrollbars@^2.6.1:
   version "2.6.1"

@@ -12,7 +12,7 @@
     "@dnd-kit/sortable": "^8.0.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@floating-ui/react": "^0.26.12",
+    "@floating-ui/react": "^0.26.13",
     "@sentry/browser": "^7.112.2",
     "@tabler/icons-react": "^2.47.0",
     "lodash-es": "^4.17.21",

@@ -1,5 +1,47 @@
 # Changelog
 
+## [1.2.1](https://github.com/jebibot/cheese-now/compare/v1.2.0...v1.2.1) (2024-05-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @emotion/react to ^11.11.4 ([#130](https://github.com/jebibot/cheese-now/issues/130)) ([9c01fe4](https://github.com/jebibot/cheese-now/commit/9c01fe49ad57c6f8c305d1cdc791e01b7c81c2c4))
+* **deps:** update dependency @emotion/styled to ^11.11.5 ([#198](https://github.com/jebibot/cheese-now/issues/198)) ([ad2753b](https://github.com/jebibot/cheese-now/commit/ad2753bc88659df3e2a6d7675c95446e65901d60))
+* **deps:** update dependency @floating-ui/react to ^0.26.10 ([#190](https://github.com/jebibot/cheese-now/issues/190)) ([251dd04](https://github.com/jebibot/cheese-now/commit/251dd041b8d7d9d5f6d9b85fe11c903aa392236e))
+* **deps:** update dependency @floating-ui/react to ^0.26.11 ([#212](https://github.com/jebibot/cheese-now/issues/212)) ([bc174c1](https://github.com/jebibot/cheese-now/commit/bc174c161a91033c0317f9cfcab3591db2409400))
+* **deps:** update dependency @floating-ui/react to ^0.26.12 ([#222](https://github.com/jebibot/cheese-now/issues/222)) ([227102f](https://github.com/jebibot/cheese-now/commit/227102f339c5d70c2df34cb203a1e862d1af89d0))
+* **deps:** update dependency @floating-ui/react to ^0.26.13 ([#246](https://github.com/jebibot/cheese-now/issues/246)) ([897af1e](https://github.com/jebibot/cheese-now/commit/897af1eeea8fbd89e9fc6ad18beb93ef06186c08))
+* **deps:** update dependency @sentry/browser to ^7.103.0 ([#127](https://github.com/jebibot/cheese-now/issues/127)) ([5abf38d](https://github.com/jebibot/cheese-now/commit/5abf38d315e5a2b675486d73424a0737d4004142))
+* **deps:** update dependency @sentry/browser to ^7.104.0 ([#140](https://github.com/jebibot/cheese-now/issues/140)) ([c2faac7](https://github.com/jebibot/cheese-now/commit/c2faac7b3855dc4214389ce066e832ec50d40d5f))
+* **deps:** update dependency @sentry/browser to ^7.105.0 ([#144](https://github.com/jebibot/cheese-now/issues/144)) ([4996d40](https://github.com/jebibot/cheese-now/commit/4996d40a9e65412dd811afe0890f313f122c7277))
+* **deps:** update dependency @sentry/browser to ^7.106.0 ([#153](https://github.com/jebibot/cheese-now/issues/153)) ([fd0d384](https://github.com/jebibot/cheese-now/commit/fd0d3841a5a23c13e78e0ff6c54d2b9082288bc6))
+* **deps:** update dependency @sentry/browser to ^7.106.1 ([#159](https://github.com/jebibot/cheese-now/issues/159)) ([6ad6a5d](https://github.com/jebibot/cheese-now/commit/6ad6a5d9b0faf6ea7212012277f2ccfdee47bbb7))
+* **deps:** update dependency @sentry/browser to ^7.107.0 ([#166](https://github.com/jebibot/cheese-now/issues/166)) ([3bca3b7](https://github.com/jebibot/cheese-now/commit/3bca3b7844c8c0b2a1b10899eceabf158348caed))
+* **deps:** update dependency @sentry/browser to ^7.108.0 ([#184](https://github.com/jebibot/cheese-now/issues/184)) ([89945a3](https://github.com/jebibot/cheese-now/commit/89945a332683037ac905e222e4ccf76cfd6a43aa))
+* **deps:** update dependency @sentry/browser to ^7.109.0 ([#197](https://github.com/jebibot/cheese-now/issues/197)) ([1aac85d](https://github.com/jebibot/cheese-now/commit/1aac85defd1bf414b177956aa700662f16d6ca46))
+* **deps:** update dependency @sentry/browser to ^7.110.0 ([#225](https://github.com/jebibot/cheese-now/issues/225)) ([a4a9c5d](https://github.com/jebibot/cheese-now/commit/a4a9c5df4573c8dbfc4c94e2a793076c676d9aab))
+* **deps:** update dependency @sentry/browser to ^7.110.1 ([#229](https://github.com/jebibot/cheese-now/issues/229)) ([e40d3eb](https://github.com/jebibot/cheese-now/commit/e40d3eb05c840185ef2e99c97b37dcf4c1e75fa5))
+* **deps:** update dependency @sentry/browser to ^7.111.0 ([#235](https://github.com/jebibot/cheese-now/issues/235)) ([ddfa793](https://github.com/jebibot/cheese-now/commit/ddfa7931896632fd01415f3af5f2b66899714cd3))
+* **deps:** update dependency @sentry/browser to ^7.112.1 ([#239](https://github.com/jebibot/cheese-now/issues/239)) ([b7750fc](https://github.com/jebibot/cheese-now/commit/b7750fcd390366986c181aca7dc245a914c52b9c))
+* **deps:** update dependency @sentry/browser to ^7.112.2 ([#241](https://github.com/jebibot/cheese-now/issues/241)) ([4cd30a3](https://github.com/jebibot/cheese-now/commit/4cd30a3b8d860635492ffddaac45a0f7c569f79f))
+* **deps:** update dependency @sentry/browser to ^7.113.0 ([#251](https://github.com/jebibot/cheese-now/issues/251)) ([84fd431](https://github.com/jebibot/cheese-now/commit/84fd4317dd73b367814b679e7b1130e40e1c34a6))
+* **deps:** update dependency overlayscrollbars to ^2.6.0 ([#154](https://github.com/jebibot/cheese-now/issues/154)) ([a700e2f](https://github.com/jebibot/cheese-now/commit/a700e2f084f8682e1285c5e3ab2ad45d335b181b))
+* **deps:** update dependency overlayscrollbars to ^2.6.1 ([#163](https://github.com/jebibot/cheese-now/issues/163)) ([2bfd6c7](https://github.com/jebibot/cheese-now/commit/2bfd6c71651ee15581fd12ae12f0899f0c2da3c4))
+* **deps:** update dependency overlayscrollbars to ^2.7.0 ([#203](https://github.com/jebibot/cheese-now/issues/203)) ([0785255](https://github.com/jebibot/cheese-now/commit/07852558cdcb3563f0d55a41a721869a4004b8a1))
+* **deps:** update dependency overlayscrollbars to ^2.7.1 ([#213](https://github.com/jebibot/cheese-now/issues/213)) ([9e11b14](https://github.com/jebibot/cheese-now/commit/9e11b148d5caad520fa429776dfc4ecf1c4bc103))
+* **deps:** update dependency overlayscrollbars to ^2.7.2 ([#234](https://github.com/jebibot/cheese-now/issues/234)) ([e272013](https://github.com/jebibot/cheese-now/commit/e272013716981c4e3215d883da30ea73049dff38))
+* **deps:** update dependency overlayscrollbars to ^2.7.3 ([#238](https://github.com/jebibot/cheese-now/issues/238)) ([e115b7f](https://github.com/jebibot/cheese-now/commit/e115b7ff37ca2a0ce85794e3e1c4045cf90ad916))
+* **deps:** update dependency overlayscrollbars-react to ^0.5.5 ([#191](https://github.com/jebibot/cheese-now/issues/191)) ([3e6b27e](https://github.com/jebibot/cheese-now/commit/3e6b27ec8f704ae978938500348d47c696d2e951))
+* **deps:** update dependency overlayscrollbars-react to ^0.5.6 ([#202](https://github.com/jebibot/cheese-now/issues/202)) ([369bbe9](https://github.com/jebibot/cheese-now/commit/369bbe9f069bc0a269b5998189d1abff26d12d1e))
+* **deps:** update dependency react-router-dom to ^6.22.2 ([#136](https://github.com/jebibot/cheese-now/issues/136)) ([a4e61a2](https://github.com/jebibot/cheese-now/commit/a4e61a29fa9bd1d1d52291f2c2c14001cea3a029))
+* **deps:** update dependency react-router-dom to ^6.22.3 ([#152](https://github.com/jebibot/cheese-now/issues/152)) ([7c29fc8](https://github.com/jebibot/cheese-now/commit/7c29fc8a46bdf703fb824f0be483265ffbbda358))
+* **deps:** update dependency react-router-dom to ^6.23.0 ([#240](https://github.com/jebibot/cheese-now/issues/240)) ([1c9a2a5](https://github.com/jebibot/cheese-now/commit/1c9a2a562a0393b5ba799345a3ec919e34be8933))
+* **deps:** update dependency superstruct to ^1.0.4 ([#158](https://github.com/jebibot/cheese-now/issues/158)) ([988718f](https://github.com/jebibot/cheese-now/commit/988718fe7cf1ec46ebc0072341d12f732a484648))
+* **deps:** update dependency webextension-polyfill to ^0.11.0 ([#232](https://github.com/jebibot/cheese-now/issues/232)) ([aaa3764](https://github.com/jebibot/cheese-now/commit/aaa3764e2d19fc34f8d1c71d7ed90e3b4732c35b))
+* **deps:** update react monorepo to ^18.3.0 ([#242](https://github.com/jebibot/cheese-now/issues/242)) ([cd14cdc](https://github.com/jebibot/cheese-now/commit/cd14cdcb0d8446b7732f9e30f6dc75616617669e))
+* **deps:** update react monorepo to ^18.3.1 ([#244](https://github.com/jebibot/cheese-now/issues/244)) ([e8b589d](https://github.com/jebibot/cheese-now/commit/e8b589d2e7eafae10b2c5a35fd0b200e06d11266))
+* increase followings size ([19dc1f9](https://github.com/jebibot/cheese-now/commit/19dc1f976bac4d433f801f2b4cc04deb00b28ce7))
+
 ## [1.2.0](https://github.com/jebibot/cheese-now/compare/v1.1.1...v1.2.0) (2024-02-26)
 
 

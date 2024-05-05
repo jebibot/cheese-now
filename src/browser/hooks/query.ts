@@ -216,7 +216,9 @@ export function useFollowedChannels(options?: UseStoreOptions) {
         return [];
       }
 
-      const { content } = await sendRuntimeMessage("request", "v1/channels/followings");
+      const { content } = await sendRuntimeMessage("request", "v1/channels/followings", {
+        size: 505,
+      });
 
       if (!content?.followingList?.length) {
         return [];

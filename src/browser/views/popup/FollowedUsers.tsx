@@ -48,10 +48,10 @@ function ChildComponent(props: ChildComponentProps) {
       const isLive = !!channel.streamer?.openLive;
 
       if (matchesFields && [isLive, null].includes(followedUserState.status)) {
+        const followDate = channel.channel.personalData?.following?.followDate;
         items.push({
           ...channel.channel,
-          followedAt: new Date(channel.channel.personalData?.following?.followDate ?? 0),
-
+          followedAt: new Date(followDate ? `${followDate}+0900` : 0),
           isRerun: false,
           isLive,
         });

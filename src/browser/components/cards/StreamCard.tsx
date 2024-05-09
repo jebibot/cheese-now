@@ -69,7 +69,7 @@ function StreamCard(props: StreamCardProps) {
     if (liveDetail?.openDate) {
       // @ts-expect-error update liveInfo
       stream.openDate = liveDetail.openDate;
-      return new Date(liveDetail.openDate);
+      return new Date(`${liveDetail.openDate}+0900`);
     }
   }, [liveDetail?.openDate]);
 

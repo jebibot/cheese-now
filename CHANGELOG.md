@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.2](https://github.com/jebibot/cheese-now/compare/v1.2.1...v1.2.2) (2024-05-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @sentry/browser to ^7.114.0 ([#255](https://github.com/jebibot/cheese-now/issues/255)) ([3536155](https://github.com/jebibot/cheese-now/commit/3536155aebe15912cf151ba47f1a0737298387f5))
+* timezone ([7f5716d](https://github.com/jebibot/cheese-now/commit/7f5716d141a9dfda8539b01084d9b7b777236200))
+
 ## [1.2.1](https://github.com/jebibot/cheese-now/compare/v1.2.0...v1.2.1) (2024-05-05)
 
 

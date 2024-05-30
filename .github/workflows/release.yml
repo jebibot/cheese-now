@@ -66,7 +66,7 @@ jobs:
               cd dist && npx chrome-webstore-upload-cli upload --auto-publish
               ;;
             firefox)
-              git archive --format=zip -o source.zip ${{ needs.release-please.outputs.tag_name }}
+              git archive --format=zip -o source.zip ${{ github.sha }}
               cd dist && npx web-ext sign --channel listed --upload-source-code ../source.zip --approval-timeout 60000
               ;;
           esac

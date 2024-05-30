@@ -111,7 +111,9 @@ function StreamCard(props: StreamCardProps) {
 
         <StreamDropdown
           channel={channel}
-          category={liveDetail?.liveCategory}
+          category={
+            liveDetail?.liveCategory && `${liveDetail.categoryType}/${liveDetail.liveCategory}`
+          }
           onNewCollection={props.onNewCollection}
         >
           <StyledDropdownButton />

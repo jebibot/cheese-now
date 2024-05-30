@@ -58,3 +58,22 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ARCHIVE_NAME: ${{ github.event.repository.name }}-${{ matrix.platform }}-${{ needs.release-please.outputs.version }}.zip
         run: cd dist && zip -r $ARCHIVE_NAME . && gh release upload ${{ needs.release-please.outputs.tag_name }} $ARCHIVE_NAME
+
+      - name: Submit
+        run: |
+          case ${{ matrix.platform }} in
+            chrome)
+              cd dist && npx chrome-webstore-upload-cli upload --auto-publish
+              ;;
+            firefox)
+              git archive --format=zip -o source.zip ${{ needs.release-please.outputs.tag_name }}
+              cd dist && npx web-ext sign --channel listed --upload-source-code ../source.zip --approval-timeout 60000
+              ;;
+          esac
+        env:
+          CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+          EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
+          WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
+          WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}

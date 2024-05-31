@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/jebibot/cheese-now/compare/v1.2.3...v1.2.4) (2024-05-30)
+
+
+### Bug Fixes
+
+* stream dropdown goto category ([a06a994](https://github.com/jebibot/cheese-now/commit/a06a99418a2e16e5d52a28ba1b8127212d4f2ab4))
+
 ## [1.2.3](https://github.com/jebibot/cheese-now/compare/v1.2.2...v1.2.3) (2024-05-30)
 
 

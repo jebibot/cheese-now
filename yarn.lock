@@ -4497,10 +4497,10 @@ overlayscrollbars-react@^0.5.6:
   resolved "https://registry.yarnpkg.com/overlayscrollbars-react/-/overlayscrollbars-react-0.5.6.tgz#e9779f9fc2c1a3288570a45c83f8e42518bfb8c1"
   integrity sha512-E5To04bL5brn9GVCZ36SnfGanxa2I2MDkWoa4Cjo5wol7l+diAgi4DBc983V7l2nOk/OLJ6Feg4kySspQEGDBw==
 
-overlayscrollbars@^2.8.3:
-  version "2.8.3"
-  resolved "https://registry.yarnpkg.com/overlayscrollbars/-/overlayscrollbars-2.8.3.tgz#6d2ac67a142e2186574e05a6b7dfee9976ec23b1"
-  integrity sha512-7JHA1oWm3Gru3RF5wwaeBdgk4keGtc56HMWEQRQi/RdLdY3pZTUDlSfUk1jyv1yQN12otr828n52rT6VNzYO4w==
+overlayscrollbars@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/overlayscrollbars/-/overlayscrollbars-2.9.0.tgz#ec27d7ea70852d184bf50872c5796a6a5b14e40a"
+  integrity sha512-bYUWbJKz0AhOJv0f1CEK3ttfDJ/PaTqo4nIoByzhBaYBXPttX0AU62EV4leb3/S/XKNAGMpj1lKDB7NIgAuApw==
 
 p-limit@^2.2.0:
   version "2.3.0"

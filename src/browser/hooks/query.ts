@@ -145,7 +145,7 @@ export function useLiveDetail(id: string, config?: SWRConfiguration) {
     ["liveDetail", id],
     async () =>
       (config?.fallbackData ||
-        (await sendRuntimeMessage("request", `v2/channels/${id}/live-detail`))
+        (await sendRuntimeMessage("request", `v3/channels/${id}/live-detail`))
           ?.content) as ChzzkLive,
     config,
   );

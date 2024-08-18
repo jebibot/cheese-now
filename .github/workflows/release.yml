@@ -53,12 +53,6 @@ jobs:
       - name: Update Manifest
         run: npx dot-json@1 dist/manifest.json version ${{ needs.release-please.outputs.version }}
 
-      - name: Upload Release Artifact
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ARCHIVE_NAME: ${{ github.event.repository.name }}-${{ matrix.platform }}-${{ needs.release-please.outputs.version }}.zip
-        run: cd dist && zip -r $ARCHIVE_NAME . && gh release upload ${{ needs.release-please.outputs.tag_name }} $ARCHIVE_NAME
-
       - name: Submit
         run: |
           case ${{ matrix.platform }} in
@@ -77,3 +71,10 @@ jobs:
           EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
           WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
+
+      - name: Upload Release Artifact
+        if: ${{ always() }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ARCHIVE_NAME: ${{ github.event.repository.name }}-${{ matrix.platform }}-${{ needs.release-please.outputs.version }}.zip
+        run: cd dist && zip -r $ARCHIVE_NAME . && gh release upload ${{ needs.release-please.outputs.tag_name }} $ARCHIVE_NAME

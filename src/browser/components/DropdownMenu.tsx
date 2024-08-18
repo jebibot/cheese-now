@@ -240,7 +240,7 @@ const Menu = forwardRef<HTMLElement, MenuProps>((props, ref) => {
     strategy: "fixed",
     onOpenChange: setIsOpen,
     whileElementsMounted: autoUpdate,
-    placement: isNested ? "right-start" : placement ?? "bottom-start",
+    placement: isNested ? "right-start" : (placement ?? "bottom-start"),
     middleware: [
       offset({
         alignmentAxis: remToPixels(isNested ? -0.25 : 0),

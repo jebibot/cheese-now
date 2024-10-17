@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.2.7](https://github.com/jebibot/cheese-now/compare/v1.2.6...v1.2.7) (2024-10-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @emotion/react to ^11.13.3 ([#424](https://github.com/jebibot/cheese-now/issues/424)) ([925dfd0](https://github.com/jebibot/cheese-now/commit/925dfd06d9be3a662eefd40d808af82097063f5d))
+* **deps:** update dependency @floating-ui/react to ^0.26.23 ([#428](https://github.com/jebibot/cheese-now/issues/428)) ([75beed5](https://github.com/jebibot/cheese-now/commit/75beed5188f3beac2e5cfc8f13d13eb8c250f500))
+* **deps:** update dependency @floating-ui/react to ^0.26.24 ([#461](https://github.com/jebibot/cheese-now/issues/461)) ([89aad39](https://github.com/jebibot/cheese-now/commit/89aad39703624ef3732f40f4645bbaf387604dec))
+* **deps:** update dependency @floating-ui/react to ^0.26.25 ([#496](https://github.com/jebibot/cheese-now/issues/496)) ([37e35b8](https://github.com/jebibot/cheese-now/commit/37e35b80023dfab5a7bfaedd14f12db68513888d))
+* **deps:** update dependency @sentry/browser to ^8.27.0 ([#432](https://github.com/jebibot/cheese-now/issues/432)) ([886d4d2](https://github.com/jebibot/cheese-now/commit/886d4d231a62bf05fa21f7600f199781b307eb43))
+* **deps:** update dependency @sentry/browser to ^8.28.0 ([#443](https://github.com/jebibot/cheese-now/issues/443)) ([4a3767b](https://github.com/jebibot/cheese-now/commit/4a3767b70416a9fe9c88b9792e117f51084e63ad))
+* **deps:** update dependency @sentry/browser to ^8.29.0 ([#451](https://github.com/jebibot/cheese-now/issues/451)) ([35f1c5a](https://github.com/jebibot/cheese-now/commit/35f1c5a4e179ec137986a6d960a752584c1de734))
+* **deps:** update dependency @sentry/browser to ^8.30.0 ([#454](https://github.com/jebibot/cheese-now/issues/454)) ([09144dc](https://github.com/jebibot/cheese-now/commit/09144dcfc580a891e34570f0dbadf5d301f33730))
+* **deps:** update dependency @sentry/browser to ^8.31.0 ([#472](https://github.com/jebibot/cheese-now/issues/472)) ([f2bb45b](https://github.com/jebibot/cheese-now/commit/f2bb45be943416ba32c44e8579e122e4e23b3cfc))
+* **deps:** update dependency @sentry/browser to ^8.32.0 ([#477](https://github.com/jebibot/cheese-now/issues/477)) ([abff993](https://github.com/jebibot/cheese-now/commit/abff993410cc06315b851464fdcad19ba3762b49))
+* **deps:** update dependency @sentry/browser to ^8.33.0 ([#485](https://github.com/jebibot/cheese-now/issues/485)) ([6871fed](https://github.com/jebibot/cheese-now/commit/6871fedcddcffbf787b948ab5fa763db6a0e5005))
+* **deps:** update dependency @sentry/browser to ^8.33.1 ([#488](https://github.com/jebibot/cheese-now/issues/488)) ([056d0ca](https://github.com/jebibot/cheese-now/commit/056d0ca7b237f09b13608899aa7dcb813affba1e))
+* **deps:** update dependency @sentry/browser to ^8.34.0 ([#492](https://github.com/jebibot/cheese-now/issues/492)) ([70f2a24](https://github.com/jebibot/cheese-now/commit/70f2a249180cd234b3aa0c85f32efa97eabb6ebc))
+* **deps:** update dependency @tabler/icons-react to ^3.13.0 ([#430](https://github.com/jebibot/cheese-now/issues/430)) ([a1235b6](https://github.com/jebibot/cheese-now/commit/a1235b63dbae9c465855aabe3152a77ac6c0ab52))
+* **deps:** update dependency @tabler/icons-react to ^3.14.0 ([#431](https://github.com/jebibot/cheese-now/issues/431)) ([5008717](https://github.com/jebibot/cheese-now/commit/500871730d59f2287506fdec946f8bde579c1c4a))
+* **deps:** update dependency @tabler/icons-react to ^3.15.0 ([#448](https://github.com/jebibot/cheese-now/issues/448)) ([533ab65](https://github.com/jebibot/cheese-now/commit/533ab65d9cc2e4ddf21c611ba1577085a8b19496))
+* **deps:** update dependency @tabler/icons-react to ^3.16.0 ([#455](https://github.com/jebibot/cheese-now/issues/455)) ([2a90822](https://github.com/jebibot/cheese-now/commit/2a908220929595927851a04117863acd5c6ab870))
+* **deps:** update dependency @tabler/icons-react to ^3.17.0 ([#462](https://github.com/jebibot/cheese-now/issues/462)) ([518490f](https://github.com/jebibot/cheese-now/commit/518490fdccc718bdaaeb6c7e0ae08b21691ffa2b))
+* **deps:** update dependency @tabler/icons-react to ^3.18.0 ([#479](https://github.com/jebibot/cheese-now/issues/479)) ([6f9766b](https://github.com/jebibot/cheese-now/commit/6f9766b052893688a4d9a60d8214d329ff587805))
+* **deps:** update dependency @tabler/icons-react to ^3.19.0 ([#482](https://github.com/jebibot/cheese-now/issues/482)) ([7a5eb38](https://github.com/jebibot/cheese-now/commit/7a5eb38e8faa833334e3b511b58288d8b42e4d92))
+* **deps:** update dependency react-router-dom to ^6.26.2 ([#452](https://github.com/jebibot/cheese-now/issues/452)) ([485e2f2](https://github.com/jebibot/cheese-now/commit/485e2f2c7e958a5f377fdba6c1a2631c139d5ce1))
+* **deps:** update dependency react-router-dom to ^6.27.0 ([#494](https://github.com/jebibot/cheese-now/issues/494)) ([ba8f5d0](https://github.com/jebibot/cheese-now/commit/ba8f5d0d6877ebd61b3aa4bde58c6c274a442ee0))
+
 ## [1.2.6](https://github.com/jebibot/cheese-now/compare/v1.2.5...v1.2.6) (2024-08-18)
 
 

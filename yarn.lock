@@ -1066,10 +1066,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@dnd-kit/core@^6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@dnd-kit/core/-/core-6.2.0.tgz#4c10e2242e007c33ddade090c25b470b5c11abfd"
-  integrity sha512-KVK/CJmaYGTxTPU6P0+Oy4itgffTUa80B8317sXzfOr1qUzSL29jE7Th11llXiu2haB7B9Glpzo2CDElin+geQ==
+"@dnd-kit/core@^6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@dnd-kit/core/-/core-6.3.0.tgz#024dd9e45da058e1d07747e51d9d29d5eb486367"
+  integrity sha512-1PZxmnH+hQFwcaVRCe4SrtBn4cZ9S0trGtxHE13iLGEEZFhiFe+Sxg4ZUlwirYsXJCejqUYDi85PQC7J8/AINg==
   dependencies:
     "@dnd-kit/accessibility" "^3.1.1"
     "@dnd-kit/utilities" "^3.2.2"

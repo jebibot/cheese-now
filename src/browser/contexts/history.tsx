@@ -1,4 +1,4 @@
-import { Location, Router } from "@remix-run/router";
+import { Location, DataRouter } from "react-router-dom";
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
 interface HistoryContext {
@@ -13,7 +13,7 @@ const Context = createContext<HistoryContext>({
 
 interface HistoryProviderProps {
   children: ReactNode;
-  router: Router;
+  router: DataRouter;
 }
 
 export function HistoryProvider(props: HistoryProviderProps) {

@@ -77,7 +77,10 @@ export class Store<T> {
     }
 
     this.listeners.forEach((listener) => {
-      listener(change.newValue?.value, change.oldValue?.value);
+      listener(
+        (change.newValue as StoreState<T>)?.value,
+        (change.oldValue as StoreState<T>)?.value,
+      );
     });
   }
 
@@ -96,7 +99,10 @@ export class Store<T> {
     };
 
     try {
-      const { [this.name]: item } = await this.areaStorage.get(this.name);
+      const { [this.name]: item } = (await this.areaStorage.get(this.name)) as Record<
+        string,
+        StoreState<T>
+      >;
 
       if (item) {
         state.value = this.validateValue(item.value);

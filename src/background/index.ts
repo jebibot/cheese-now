@@ -16,6 +16,7 @@ import {
   ChzzkResponse,
   ChzzkUser,
   Dictionary,
+  Message,
 } from "~/common/types";
 
 setupSentry();
@@ -318,13 +319,14 @@ browser.runtime.onStartup.addListener(() => {
 });
 
 browser.runtime.onMessage.addListener((message) => {
-  const { [message.type]: handler } = messageHandlers;
+  const msg = message as Message;
+  const { [msg.type]: handler } = messageHandlers;
 
   if (handler == null) {
     throw new RangeError();
   }
 
-  return handler(...message.args);
+  return handler(...msg.args);
 });
 
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {

@@ -201,3 +201,8 @@ export interface ChzzkResponse<T> {
   content: T | null;
   message: string | null;
 }
+
+export interface Message {
+  type: string;
+  args: any[];
+}

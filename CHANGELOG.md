@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.9](https://github.com/jebibot/cheese-now/compare/v1.2.8...v1.2.9) (2024-12-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @sentry/browser to ^8.43.0 ([#578](https://github.com/jebibot/cheese-now/issues/578)) ([5625642](https://github.com/jebibot/cheese-now/commit/562564231fea6727cb7436c1519b8cec983ce687))
+
 ## [1.2.8](https://github.com/jebibot/cheese-now/compare/v1.2.7...v1.2.8) (2024-12-09)
 
 

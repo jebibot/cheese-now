@@ -11,6 +11,8 @@
 
 또한, 스트리머가 방송을 시작하거나 카테고리를 변경하면 알림을 받을 수 있습니다.
 
+> 본 확장 프로그램은 치지직과 관련이 없으며, 치지직, CHZZK은 NAVER㈜의 등록상표입니다. 본 확장 프로그램을 사용하여 발생하는 결과에 대한 모든 책임은 사용자에게 있습니다.
+
 ## Build
 
 Install the dependencies (`yarn install`) and build for the desired platform:

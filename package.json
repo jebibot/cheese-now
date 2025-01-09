@@ -14,7 +14,7 @@
     "@emotion/styled": "^11.14.0",
     "@floating-ui/react": "^0.27.3",
     "@sentry/browser": "^8.48.0",
-    "@tabler/icons-react": "^3.26.0",
+    "@tabler/icons-react": "^3.28.1",
     "lodash-es": "^4.17.21",
     "overlayscrollbars": "^2.10.1",
     "overlayscrollbars-react": "^0.5.6",

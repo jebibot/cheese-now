@@ -291,27 +291,11 @@ browser.notifications.onClicked.addListener((notificationId) => {
 
     case "stream":
       return openUrl(`https://chzzk.naver.com/live/${data}`);
-
-    case "update":
-      return openUrl("https://www.chz.app/now/patch-notes");
   }
 });
 
-browser.runtime.onInstalled.addListener((details) => {
+browser.runtime.onInstalled.addListener(() => {
   setup();
-
-  if (details.previousVersion) {
-    const manifest = browser.runtime.getManifest();
-
-    if (manifest.version > details.previousVersion) {
-      browser.notifications.create(`${Date.now()}:update`, {
-        title: t("notificationMessage_extensionUpdated", manifest.version),
-        message: t("notificationContextMessage_extensionUpdated"),
-        iconUrl: browser.runtime.getURL("icon-96.png"),
-        type: "basic",
-      });
-    }
-  }
 });
 
 browser.runtime.onStartup.addListener(() => {

@@ -1517,10 +1517,10 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/webextension-polyfill@^0.12.2":
-  version "0.12.2"
-  resolved "https://registry.yarnpkg.com/@types/webextension-polyfill/-/webextension-polyfill-0.12.2.tgz#ea50fb92ee056f9243218bc160bdc7309d3704fd"
-  integrity sha512-rUIyZfbj1TcxlV0IWyy7MUHnW24nqUfQR0F+vPru/3t4noA9Pd4sdG4sljQgQHLd1vYgmkFLSvEc/furzQPbUw==
+"@types/webextension-polyfill@^0.12.3":
+  version "0.12.3"
+  resolved "https://registry.yarnpkg.com/@types/webextension-polyfill/-/webextension-polyfill-0.12.3.tgz#a4ac3452b816e4bd646024007a886234e2f6293e"
+  integrity sha512-F58aDVSeN/MjUGazXo/cPsmR76EvqQhQ1v4x23hFjUX0cfAJYE+JBWwiOGW36/VJGGxoH74sVlRIF3z7SJCKyg==
 
 "@typescript-eslint/eslint-plugin@^8.26.0":
   version "8.26.0"

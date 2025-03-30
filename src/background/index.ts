@@ -182,9 +182,6 @@ async function refresh(withNotifications: boolean) {
 }
 
 async function refreshActionBadge() {
-  const manifest = browser.runtime.getManifest();
-  const browserAction = manifest.manifest_version === 2 ? browser.browserAction : browser.action;
-
   const [currentUser, followedStreams, settings] = await Promise.all([
     stores.currentUser.get(),
     stores.followedStreams.get(),
@@ -201,13 +198,13 @@ async function refreshActionBadge() {
     browser.runtime.getURL(currentUser ? `icon-${size}.png` : `icon-gray-${size}.png`);
 
   await Promise.allSettled([
-    browserAction.setBadgeBackgroundColor({
+    browser.action.setBadgeBackgroundColor({
       color: settings.badge.color,
     }),
-    browserAction.setBadgeText({
+    browser.action.setBadgeText({
       text,
     }),
-    browserAction.setIcon({
+    browser.action.setIcon({
       path: {
         16: getIconPath(16),
         32: getIconPath(32),

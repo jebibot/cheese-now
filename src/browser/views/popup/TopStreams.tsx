@@ -23,7 +23,9 @@ const LoadMore = styled.div`
 
 export function ChildComponent() {
   const [pages, { error, fetchMore, hasMore, isValidating, refresh }] = useStreams(
-    {},
+    {
+      sortType: "POPULAR",
+    },
     {
       suspense: true,
     },

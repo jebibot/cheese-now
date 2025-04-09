@@ -145,7 +145,7 @@ export function useLiveDetail(id: string, config?: SWRConfiguration) {
     ["liveDetail", id],
     async () =>
       (config?.fallbackData ||
-        (await sendRuntimeMessage("request", `v3/channels/${id}/live-detail`))
+        (await sendRuntimeMessage("request", `v3.1/channels/${id}/live-detail`))
           ?.content) as ChzzkLive,
     config,
   );
@@ -218,6 +218,7 @@ export function useFollowedChannels(options?: UseStoreOptions) {
 
       const { content } = await sendRuntimeMessage("request", "v1/channels/followings", {
         size: 505,
+        sortType: "FOLLOW",
       });
 
       if (!content?.followingList?.length) {

@@ -83,6 +83,10 @@ const router = createHashRouter([
                 path: "videos",
                 lazy: () => import("../views/popup/CategoryVideos"),
               },
+              {
+                path: "clips",
+                lazy: () => import("../views/popup/CategoryClips"),
+              },
             ],
           },
         ],

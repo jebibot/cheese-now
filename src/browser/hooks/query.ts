@@ -6,6 +6,7 @@ import { allPromises, sendRuntimeMessage } from "~/common/helpers";
 import {
   ChzzkCategory,
   ChzzkChannel,
+  ChzzkClip,
   ChzzkFollowedChannel,
   ChzzkLive,
   ChzzkLounge,
@@ -138,6 +139,14 @@ export function useCategoryVideos(
     params,
     config,
   );
+}
+
+export function useCategoryClips(
+  path: string,
+  params?: Dictionary<unknown> | null,
+  config?: SWRInfiniteConfiguration,
+) {
+  return useCursorQueryList<ChzzkClip>(`v1/categories/${path}/clips`, params, config);
 }
 
 export function useLiveDetail(id: string, config?: SWRConfiguration) {

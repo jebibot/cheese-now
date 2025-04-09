@@ -182,6 +182,22 @@ export interface ChzzkVideo {
   videoCategoryValue: string;
 }
 
+export interface ChzzkClip {
+  clipUID: string;
+  videoId: string;
+  clipTitle: string;
+  ownerChannelId: string;
+  ownerChannel: ChzzkChannel;
+  thumbnailImageUrl: string;
+  categoryType: string;
+  clipCategory: string;
+  duration: number;
+  adult: boolean;
+  createdDate: string;
+  recId: string;
+  readCount: number;
+}
+
 export interface ChzzkPagination<T> {
   size: number;
   page: {

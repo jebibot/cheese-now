@@ -80,6 +80,7 @@ function CategoryTitle(props: CategoryTitleProps) {
       <TabList>
         <Tab to="streams">{t("titleText_streams")}</Tab>
         <Tab to="videos">{t("titleText_videos")}</Tab>
+        <Tab to="clips">{t("titleText_clips")}</Tab>
       </TabList>
     </Wrapper>
   );

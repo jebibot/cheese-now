@@ -302,7 +302,7 @@ browser.runtime.onStartup.addListener(() => {
   setup();
 });
 
-browser.runtime.onMessage.addListener((message) => {
+browser.runtime.onMessage.addListener((message: any) => {
   const msg = message as Message;
   const { [msg.type]: handler } = messageHandlers;
 

@@ -34,7 +34,7 @@ export interface ClipCardProps {
 function ClipCard(props: ClipCardProps) {
   const { clip } = props;
 
-  const createdAt = useMemo(() => formatDate(clip.createdDate), [clip.createdDate]);
+  const createdAt = useMemo(() => formatDate(`${clip.createdDate}+0900`), [clip.createdDate]);
   const timeString = useMemo(() => formatTime(clip.duration * 1000), [clip.duration]);
 
   return (

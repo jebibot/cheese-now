@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/jebibot/cheese-now/compare/v1.3.0...v1.3.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* clip createdAt ([477f367](https://github.com/jebibot/cheese-now/commit/477f367cd6d368d5dc7283e7690f9c6dc339c2f6))
+
 ## [1.3.0](https://github.com/jebibot/cheese-now/compare/v1.2.8...v1.3.0) (2025-04-10)
 
 

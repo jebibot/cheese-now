@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/jebibot/cheese-now/compare/v1.3.1...v1.3.2) (2025-04-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react to ^0.27.7 ([#699](https://github.com/jebibot/cheese-now/issues/699)) ([fe29ed5](https://github.com/jebibot/cheese-now/commit/fe29ed5b1af5009d028248342e1743d25b784ce7))
+
 ## [1.3.1](https://github.com/jebibot/cheese-now/compare/v1.3.0...v1.3.1) (2025-04-10)
 
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.2](https://github.com/jebibot/cheese-now/compare/v1.3.1...v1.3.2) (2025-04-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react to ^0.27.7 ([#699](https://github.com/jebibot/cheese-now/issues/699)) ([fe29ed5](https://github.com/jebibot/cheese-now/commit/fe29ed5b1af5009d028248342e1743d25b784ce7))
+* **deps:** update dependency @sentry/browser to ^9.13.0 ([#705](https://github.com/jebibot/cheese-now/issues/705)) ([e1d30c5](https://github.com/jebibot/cheese-now/commit/e1d30c5815a57bfe6acd07dbd994d945343443f4))
+* **deps:** update dependency react-router-dom to ^7.5.1 ([#706](https://github.com/jebibot/cheese-now/issues/706)) ([9d89b76](https://github.com/jebibot/cheese-now/commit/9d89b76122f885c65c917d33e0b72c1d540a75e5))
+
 ## [1.3.1](https://github.com/jebibot/cheese-now/compare/v1.3.0...v1.3.1) (2025-04-10)
 
 

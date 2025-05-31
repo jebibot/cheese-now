@@ -1299,10 +1299,10 @@
   dependencies:
     "@floating-ui/dom" "^1.0.0"
 
-"@floating-ui/react@^0.27.9":
-  version "0.27.9"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.27.9.tgz#b3c445a85ead27b73715c978a19b5506532ff097"
-  integrity sha512-Y0aCJBNtfVF6ikI1kVzA0WzSAhVBz79vFWOhvb5MLCRNODZ1ylGSLTuncchR7JsLyn9QzV6JD44DyZhhOtvpRw==
+"@floating-ui/react@^0.27.10":
+  version "0.27.10"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.27.10.tgz#25f8df37a48e79847fc1c62875e63d2126462088"
+  integrity sha512-2tQScvQgzeYAdReavy/ql0JimAruQ2qtDHQFlcXSv8WP/1S1/YaIftyvhGfHknIB6rns0K3P6CV/lw/Tjm5Oaw==
   dependencies:
     "@floating-ui/react-dom" "^2.1.2"
     "@floating-ui/utils" "^0.2.9"

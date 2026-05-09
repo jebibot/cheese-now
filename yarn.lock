@@ -1692,10 +1692,10 @@
   dependencies:
     undici-types "~7.16.0"
 
-"@types/node@^20.19.4":
-  version "20.19.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.19.4.tgz#c4b8ce51a0f675a354225c58980ccacfe0af5d74"
-  integrity sha512-OP+We5WV8Xnbuvw0zC2m4qfB/BJvjyCwtNjhHdJxV1639SGSKrLmJkc3fMnp2Qy8nJyHp8RO6umxELN/dS1/EA==
+"@types/node@^20.19.40":
+  version "20.19.40"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.19.40.tgz#80a4a7236e27817636777836ceedb889adf6da2f"
+  integrity sha512-xxx6M2IpSTnnKcR0cMvIiohkiCx20/oRPtWGbenFygKCGl3zqUzdNjQ/1V4solq1LU+dgv0nQzeGOuqkqZGg0Q==
   dependencies:
     undici-types "~6.21.0"
 

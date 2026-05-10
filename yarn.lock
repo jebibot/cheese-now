@@ -4624,10 +4624,10 @@ overlayscrollbars-react@^0.5.6:
   resolved "https://registry.yarnpkg.com/overlayscrollbars-react/-/overlayscrollbars-react-0.5.6.tgz#e9779f9fc2c1a3288570a45c83f8e42518bfb8c1"
   integrity sha512-E5To04bL5brn9GVCZ36SnfGanxa2I2MDkWoa4Cjo5wol7l+diAgi4DBc983V7l2nOk/OLJ6Feg4kySspQEGDBw==
 
-overlayscrollbars@^2.11.4:
-  version "2.11.4"
-  resolved "https://registry.yarnpkg.com/overlayscrollbars/-/overlayscrollbars-2.11.4.tgz#68a776731106f9f767d5b667fb2024127d282a94"
-  integrity sha512-GKYQo3OZ1QWnppNjQVv5hfpn+glYUxc6+ufW+ivdXUyLWFNc01XoH2Z36KGM4I8e5pXYeA3ElNItcXiLvmUhnQ==
+overlayscrollbars@^2.16.0:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/overlayscrollbars/-/overlayscrollbars-2.16.0.tgz#dda1352649d37a5d2eb5faf8ec3ea765bf815632"
+  integrity sha512-N03oje/q7j93D0aLZtoCdsDSYLmhheSsv8H7oSLE7HhdV9P/bmCURtLV/KbPye7P/bpfyt/obSfDpGUYoJ0OWg==
 
 own-keys@^1.0.1:
   version "1.0.1"

@@ -24,7 +24,7 @@ import {
   Settings,
 } from "./types";
 
-export type StoreAreaName = "local" | "session" | "sync";
+export type StoreAreaName = "local" | "managed" | "sync";
 export type StoreMigration = (value: any) => Promise<any>;
 
 export interface StoreOptions<T> {
@@ -52,6 +52,18 @@ export class Store<T> {
     readonly name: string,
     readonly options: StoreOptions<T>,
   ) {}
+
+  async setup(migrate = false): Promise<void> {
+    if (migrate) {
+      await this.migrate();
+    }
+
+    const value = await this.get();
+
+    this.listeners.forEach((listener) => {
+      listener(value);
+    });
+  }
 
   applyChange(changes: Record<string, Storage.StorageChange>, areaName: string) {
     if (areaName !== this.areaName) {
@@ -174,7 +186,7 @@ export class Store<T> {
 }
 
 export const stores = {
-  currentUser: new Store<ChzzkUser | null>("session", "currentUser", {
+  currentUser: new Store<ChzzkUser | null>("local", "currentUser", {
     schema: nullable(
       object({
         hasProfile: boolean(),
@@ -190,7 +202,7 @@ export const stores = {
     ),
     defaultValue: () => null,
   }),
-  followedStreams: new Store<ChzzkFollowedChannel[]>("session", "followedStreams", {
+  followedStreams: new Store<ChzzkFollowedChannel[]>("local", "followedStreams", {
     schema: array(
       object({
         channelId: string(),

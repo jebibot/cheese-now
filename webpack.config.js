@@ -42,9 +42,6 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
-      new webpack.EnvironmentPlugin({
-        SENTRY_DSN: null,
-      }),
       new webpack.ProvidePlugin({
         browser: "webextension-polyfill",
       }),

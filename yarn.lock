@@ -1359,52 +1359,6 @@
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-"@sentry-internal/browser-utils@9.47.1":
-  version "9.47.1"
-  resolved "https://registry.yarnpkg.com/@sentry-internal/browser-utils/-/browser-utils-9.47.1.tgz#212fd29613e1631c7a490e860845160050962017"
-  integrity sha512-twv6YhrUlPkvKz4/iQDH4KHgcv9t4cMjmZPf4/dCSCXn4/GOjzjx2d74c1w+1KOdS7lcsQzI+MtbK6SeYLiGfQ==
-  dependencies:
-    "@sentry/core" "9.47.1"
-
-"@sentry-internal/feedback@9.47.1":
-  version "9.47.1"
-  resolved "https://registry.yarnpkg.com/@sentry-internal/feedback/-/feedback-9.47.1.tgz#b4043e8ba5c687414b3eb091ccfb66c2f1fcfd34"
-  integrity sha512-xJ4vKvIpAT8e+Sz80YrsNinPU0XV7jPxPjdZ4ex8R2mMvx7pM0gq8JiR/sIVmNiOE0WiUDr6VwLDE8j2APSRMA==
-  dependencies:
-    "@sentry/core" "9.47.1"
-
-"@sentry-internal/replay-canvas@9.47.1":
-  version "9.47.1"
-  resolved "https://registry.yarnpkg.com/@sentry-internal/replay-canvas/-/replay-canvas-9.47.1.tgz#fd55b9a6bdd60a214a2244a3b7556a096b9fc6ab"
-  integrity sha512-r9nve+l5+elGB9NXSN1+PUgJy790tXN1e8lZNH2ziveoU91jW4yYYt34mHZ30fU9tOz58OpaRMj3H3GJ/jYZVA==
-  dependencies:
-    "@sentry-internal/replay" "9.47.1"
-    "@sentry/core" "9.47.1"
-
-"@sentry-internal/replay@9.47.1":
-  version "9.47.1"
-  resolved "https://registry.yarnpkg.com/@sentry-internal/replay/-/replay-9.47.1.tgz#6b62c0b055917279448caf7a79c273562e93d940"
-  integrity sha512-O9ZEfySpstGtX1f73m3NbdbS2utwPikaFt6sgp74RG4ZX4LlXe99VAjKR464xKECpYsLmj2bYpiK4opURF0pBA==
-  dependencies:
-    "@sentry-internal/browser-utils" "9.47.1"
-    "@sentry/core" "9.47.1"
-
-"@sentry/browser@^9.47.1":
-  version "9.47.1"
-  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-9.47.1.tgz#38da62d2d3b4f25aec066a7e7fdc337d75230b85"
-  integrity sha512-at5JOLziw5QpVYytxTDU6xijdV6lDQ/Rxp/qXJaHXud3gIK4suv2cXW+tupJfwoUoHFCnDNfccjCmPmP0yRqiA==
-  dependencies:
-    "@sentry-internal/browser-utils" "9.47.1"
-    "@sentry-internal/feedback" "9.47.1"
-    "@sentry-internal/replay" "9.47.1"
-    "@sentry-internal/replay-canvas" "9.47.1"
-    "@sentry/core" "9.47.1"
-
-"@sentry/core@9.47.1":
-  version "9.47.1"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-9.47.1.tgz#6b95b8a03ade1ca04f8b9b457bc751eb8be0c06a"
-  integrity sha512-KX62+qIt4xgy8eHKHiikfhz2p5fOciXd0Cl+dNzhgPFq8klq4MGMNaf148GB3M/vBqP4nw/eFvRMAayFCgdRQw==
-
 "@simple-libs/child-process-utils@^1.0.0":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@simple-libs/child-process-utils/-/child-process-utils-1.0.2.tgz#cb182d310c9bed3ace200b26258e090d898a1736"

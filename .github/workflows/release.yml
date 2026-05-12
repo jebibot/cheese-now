@@ -53,8 +53,6 @@ jobs:
 
       - name: Build
         run: yarn build:${{ matrix.platform }}
-        env:
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
       - name: Update Manifest
         run: npx dot-json@1 dist/manifest.json version ${{ needs.release-please.outputs.version }}

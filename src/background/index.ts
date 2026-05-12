@@ -1,14 +1,7 @@
 import { castArray, find, get, toString } from "lodash-es";
 
 import { REDIRECT_URI } from "~/common/constants";
-import {
-  matchString,
-  openUrl,
-  reportException,
-  settlePromises,
-  setupSentry,
-  t,
-} from "~/common/helpers";
+import { matchString, openUrl, settlePromises, t } from "~/common/helpers";
 import { stores } from "~/common/stores";
 import {
   ChzzkFollowedChannel,
@@ -18,8 +11,6 @@ import {
   Dictionary,
   Message,
 } from "~/common/types";
-
-setupSentry();
 
 class RequestError extends Error {
   constructor(
@@ -172,9 +163,7 @@ async function refresh(withNotifications: boolean) {
     } else {
       await stores.followedStreams.set([]);
     }
-  } catch (e) {
-    reportException(e);
-  }
+  } catch {} // eslint-disable-line no-empty
 
   browser.alarms.create("refresh", {
     delayInMinutes: 1,

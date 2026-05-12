@@ -54,8 +54,6 @@ jobs:
 
       - name: Build
         run: yarn build:${{ matrix.platform }}
-        env:
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7

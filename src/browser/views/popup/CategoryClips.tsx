@@ -57,7 +57,9 @@ function ChildComponent(props: ChildComponentProps) {
       <List>
         {pages.map((page, index) => (
           <Fragment key={index}>
-            {page.content?.data.map((clip) => <ClipCard key={clip.clipUID} clip={clip} />)}
+            {page.content?.data.map((clip) => (
+              <ClipCard key={clip.clipUID} clip={clip} />
+            ))}
           </Fragment>
         ))}
       </List>

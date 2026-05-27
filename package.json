@@ -67,7 +67,7 @@
     "twin.macro": "^3.4.1",
     "typescript": "^6.0.3",
     "webpack": "^5.107.2",
-    "webpack-cli": "^7.0.2",
+    "webpack-cli": "^7.0.3",
     "webpack-merge": "^6.0.1"
   },
   "babelMacros": {

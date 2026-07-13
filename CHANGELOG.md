@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.3](https://github.com/jebibot/cheese-now/compare/v1.3.2...v1.3.3) (2026-07-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @floating-ui/react to ^0.27.20 ([#891](https://github.com/jebibot/cheese-now/issues/891)) ([7d29acc](https://github.com/jebibot/cheese-now/commit/7d29acc43d06e9dbed570dbbe2c48766825c0b37))
+* **deps:** update dependency react-router-dom to ^7.15.1 ([#832](https://github.com/jebibot/cheese-now/issues/832)) ([b5746c5](https://github.com/jebibot/cheese-now/commit/b5746c56fb3e93da7b196ea1855358feea767b5e))
+* **deps:** update dependency react-router-dom to ^7.16.0 ([#846](https://github.com/jebibot/cheese-now/issues/846)) ([512f043](https://github.com/jebibot/cheese-now/commit/512f04383ab0dd1a821ab6935a3bf6ea3a5edf25))
+* **deps:** update dependency react-router-dom to ^7.18.1 ([#881](https://github.com/jebibot/cheese-now/issues/881)) ([c52603c](https://github.com/jebibot/cheese-now/commit/c52603ce36a834fa5438621f682915ee7a607e55))
+* **deps:** update dependency react-use to ^17.6.1 ([#861](https://github.com/jebibot/cheese-now/issues/861)) ([1b2a597](https://github.com/jebibot/cheese-now/commit/1b2a597a7a1a3b6d9edca602a4df5fe08de0018a))
+* **deps:** update dependency swr to ^2.4.2 ([#869](https://github.com/jebibot/cheese-now/issues/869)) ([db6539c](https://github.com/jebibot/cheese-now/commit/db6539ca66af2ef2881171cab8f09274875fa168))
+* **deps:** update react-router monorepo to ^7.17.0 ([#855](https://github.com/jebibot/cheese-now/issues/855)) ([b800ac3](https://github.com/jebibot/cheese-now/commit/b800ac32a46f4e79761356f3bed12a2e4dec303c))
+* **deps:** update react-router monorepo to ^7.18.0 ([#863](https://github.com/jebibot/cheese-now/issues/863)) ([e06887e](https://github.com/jebibot/cheese-now/commit/e06887e0fb384008ecead6de0007e148b99204c4))
+
 ## [1.3.2](https://github.com/jebibot/cheese-now/compare/v1.3.1...v1.3.2) (2026-05-12)
 
 
